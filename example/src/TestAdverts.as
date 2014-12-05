@@ -107,19 +107,20 @@ package
 					Adverts.service.addEventListener( AdvertEvent.USER_EVENT_LEAVE,			adverts_userLeaveHandler, false, 0, true );
 					Adverts.service.addEventListener( AdvertEvent.USER_EVENT_SHOW_AD, 		adverts_userShowAdHandler, false, 0, true );
 					
+					if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_IAD ))
+					{
+						message( "Initialising iAD" );
+						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_IAD, IAD_ACCOUNT_ID );
+					}
+					else 
 					if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_ADMOB ))
 					{
 						message( "Initialising ADMOB" );
 						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB, _adUnitId );
 					}
-					else if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_IAD ))
-					{
-						message( "Initialising iAD" );
-						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_IAD, IAD_ACCOUNT_ID );
-					}
 					else
 					{
-						message( "No platform not supported" );
+						message( "No platform supported" );
 					}
 				}
 				else
@@ -207,8 +208,8 @@ package
 						case 0:
 						{
 							var size:AdvertPosition = new AdvertPosition();
-//							size.verticalAlign = AdvertPosition.ALIGN_BOTTOM;
-//							size.horizontalAlign = AdvertPosition.ALIGN_RIGHT;
+							size.verticalAlign = AdvertPosition.ALIGN_BOTTOM;
+							size.horizontalAlign = AdvertPosition.ALIGN_RIGHT;
 							
 							message("Adverts.showAdvert(" + size.toString() + ")");
 							Adverts.service.showAdvert( size );
