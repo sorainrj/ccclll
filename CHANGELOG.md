@@ -1,5 +1,11 @@
 
 
+###### 2014.12.17
+
+iOS: Included arm64 support (resolves #2) 
+Android: Corrected application id check when doesn't contain air prefix 
+
+
 ###### 2014.12.05
 
 Corrected missing EventDispatcher functions from base class
