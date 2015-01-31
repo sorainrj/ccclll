@@ -2,6 +2,11 @@
 
 ###### 2015.01.31
 
+iOS: Removed reference to the IDFA returned as the advertising identifier in the iAdOnly version to avoid review rejection (resolves #3)
+
+
+###### 2015.01.31
+
 Added check for .debug suffix in application id
 
 
