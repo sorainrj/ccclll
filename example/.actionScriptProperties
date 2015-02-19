@@ -27,15 +27,17 @@
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/spark_dmv.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_dmv.swc" useDefaultLinkType="false"/>
-          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/air/applicationupdater_ui.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/air/airframework.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_flashflexkit.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/air/applicationupdater_ui.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/mobile/mobilecomponents.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_agent.swc" useDefaultLinkType="false"/>
         </excludedEntries>
       </libraryPathEntry>
-      <libraryPathEntry kind="5" linkType="2" path="/Users/marchbold/work/distriqt/extensions/extensions/adverts/trunk/bin/com.distriqt.Adverts-iAdOnly.ane"/>
+      <libraryPathEntry kind="3" linkType="1" path="/distriqt.extension.googleplayservices/bin/distriqt.extension.googleplayservices.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/distriqt.extension.adverts/bin/distriqt.extension.adverts.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="5" linkType="2" path="/Users/marchbold/work/distriqt/extensions/extensions/adverts/trunk/bin/com.distriqt.Adverts.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="${DOCUMENTS}/extensions/googleplayservices/trunk/bin/com.distriqt.GooglePlayServices.ane"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
@@ -53,7 +55,7 @@
       <airSettings airCertificatePath="/Users/marchbold/Dropbox/work/certs/iPhoneDeveloper_MichaelArchbold_Certificates.p12" airTimestamp="true" anePathSet="true" version="1">
         <airExcludes/>
         <anePaths>
-          <anePathEntry path="${DOCUMENTS}/extensions/adverts/trunk/bin/com.distriqt.Adverts-iAdOnly.ane"/>
+          <anePathEntry path="${DOCUMENTS}/extensions/adverts/trunk/bin/com.distriqt.Adverts.ane"/>
         </anePaths>
         <newLaunchParams/>
         <modifiedLaunchParams/>
@@ -68,6 +70,7 @@
         <airExcludes/>
         <anePaths>
           <anePathEntry path="${DOCUMENTS}/extensions/adverts/trunk/bin/com.distriqt.Adverts.ane"/>
+          <anePathEntry path="${DOCUMENTS}/extensions/googleplayservices/trunk/bin/com.distriqt.GooglePlayServices.ane"/>
         </anePaths>
         <newLaunchParams/>
         <modifiedLaunchParams/>

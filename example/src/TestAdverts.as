@@ -19,6 +19,7 @@ package
 	import com.distriqt.extension.adverts.AdvertPosition;
 	import com.distriqt.extension.adverts.Adverts;
 	import com.distriqt.extension.adverts.events.AdvertEvent;
+	import com.distriqt.extension.adverts.events.InterstitialEvent;
 	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
@@ -28,7 +29,6 @@ package
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	import flash.utils.getTimer;
-	import flash.utils.setInterval;
 	import flash.utils.setTimeout;
 	
 	
@@ -39,20 +39,23 @@ package
 	 */
 	public class TestAdverts extends Sprite
 	{
-		public static const DEV_KEY : String = "YOUR_DEVELOPER_KEY";
+		public static const APP_KEY 			: String = "APPLICATION_KEY";
 		
-
-		public static const ADMOB_AD_UNIT_ID	: String = "YOUR_ADMOB_ACCOUNT_ID";
-		public static const IAD_ACCOUNT_ID		: String = "";
+		public static const ADMOB_AD_UNIT_ID				: String = "ADMOB_BANNER_AD_UNIT_ID";
+		public static const ADMOB_AD_UNIT_ID_INTERSTITIAL	: String = "ADMOB_INTERSTITIAL_AD_UNIT_ID";
+		
+		public static const IAD_ACCOUNT_ID					: String = "";
+		
 		
 		/**
 		 * Class constructor 
 		 */	
-		public function TestAdverts( devKey:String=DEV_KEY, adUnitId:String=ADMOB_AD_UNIT_ID )
+		public function TestAdverts( appKey:String=APP_KEY, adUnitId:String=ADMOB_AD_UNIT_ID, adUnitIdInterstitial:String=ADMOB_AD_UNIT_ID_INTERSTITIAL )
 		{
 			super();
-			_devKey = devKey;
+			_appKey = appKey;
 			_adUnitId = adUnitId;
+			_adUnitIdInterstitial = adUnitIdInterstitial;
 			create();
 			init();
 		}
@@ -62,9 +65,10 @@ package
 		//	VARIABLES
 		//
 		
-		private var _devKey			: String;
-		private var _adUnitId		: String;
-		private var _text			: TextField;
+		private var _appKey					: String;
+		private var _adUnitId				: String;
+		private var _adUnitIdInterstitial	: String;
+		private var _text					: TextField;
 		
 		
 		//
@@ -76,10 +80,10 @@ package
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 
-			var tf:TextFormat = new TextFormat();
-			tf.size = 24;
+			var tf:TextFormat = new TextFormat( "_typewriter", 18 );
 			_text = new TextField();
 			_text.defaultTextFormat = tf;
+			_text.y = 40;
 			addChild( _text );
 
 			stage.addEventListener( Event.RESIZE, stage_resizeHandler, false, 0, true );
@@ -91,13 +95,17 @@ package
 		{
 			try
 			{
+//				GooglePlayServices.init("");
+//				message( "GooglePlayServices version: " + GooglePlayServices.service.googlePlayServicesVersion() );
+				
+				
 				var time:int = getTimer();
-				Adverts.init( _devKey );
+				Adverts.init( _appKey );
 				
 				message( "Adverts Supported: " + Adverts.isSupported );
 				message( "Adverts Version:   " + Adverts.service.version );
-				message( "ADMOB Support = " + Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_ADMOB ) );
-				message( "IAD Support = " + Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_IAD ) );
+				message( "ADMOB Supported:   " + Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_ADMOB ) );
+				message( "IAD Supported:     " + Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_IAD ) );
 				
 				if (Adverts.isSupported)
 				{
@@ -107,16 +115,21 @@ package
 					Adverts.service.addEventListener( AdvertEvent.USER_EVENT_LEAVE,			adverts_userLeaveHandler, false, 0, true );
 					Adverts.service.addEventListener( AdvertEvent.USER_EVENT_SHOW_AD, 		adverts_userShowAdHandler, false, 0, true );
 					
-					if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_IAD ))
-					{
-						message( "Initialising iAD" );
-						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_IAD, IAD_ACCOUNT_ID );
-					}
-					else 
+					Adverts.service.interstitials.addEventListener( InterstitialEvent.LOADED, 		interstitial_loadedHandler, 	false, 0, true );
+					Adverts.service.interstitials.addEventListener( InterstitialEvent.ERROR, 		interstitial_errorHandler, 		false, 0, true );
+					Adverts.service.interstitials.addEventListener( InterstitialEvent.DISMISSED, 	interstitial_dismissedHandler, 	false, 0, true );
+					
 					if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_ADMOB ))
 					{
 						message( "Initialising ADMOB" );
 						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB, _adUnitId );
+//						Adverts.service.setTestDetails( [ "" ] );
+					}
+					else 
+					if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_IAD ))
+					{
+						message( "Initialising iAD" );
+						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_IAD, IAD_ACCOUNT_ID );
 					}
 					else
 					{
@@ -166,6 +179,83 @@ package
 			}
 		}
 		
+		
+		private var _stage:int = 0;
+		
+		private function stage_clickHandler( event:MouseEvent ):void
+		{
+			if (Adverts.isSupported)
+			{
+				try
+				{
+					switch(_stage)
+					{
+						case 0:
+						{
+							var size:AdvertPosition = new AdvertPosition();
+							size.verticalAlign   = AdvertPosition.ALIGN_BOTTOM;
+							size.horizontalAlign = AdvertPosition.ALIGN_RIGHT;
+							
+							message("Adverts.showAdvert(" + size.toString() + ")");
+							Adverts.service.showAdvert( size );
+							break;
+						}
+							
+						case 1:
+						{
+							Adverts.service.refreshAdvert();
+							break;
+						}
+							
+						case 2:
+						{
+							Adverts.service.hideAdvert();
+							break;
+						}
+							
+						case 3:
+						{
+							if (Adverts.service.interstitials.isSupported)
+							{
+								Adverts.service.interstitials.load( _adUnitIdInterstitial );
+							}
+							else
+							{
+								message( "Interstitials not supported" );
+							}
+							break;
+						}
+							
+						case 4:
+						{
+							if (Adverts.service.interstitials.isSupported)
+							{
+								if (Adverts.service.interstitials.isReady())
+								{
+									Adverts.service.interstitials.show();
+								}
+								else
+								{
+									message( "Interstitial not ready" );
+								}
+							}
+							break;
+						}
+
+					}
+				}
+				catch (e:Error)
+				{
+					message( "ERROR::"+e.message );
+				}
+			}
+			_stage ++; if (_stage > 4) _stage = 0;
+		}
+		
+		
+		//
+		//	EXTENSION LISTENERS
+		//
 
 		private function adverts_receivedAdHandler( event:AdvertEvent ):void
 		{
@@ -177,7 +267,7 @@ package
 			message( "adverts_errorHandler:: " + event.details.message );
 			//
 			//	If you wish you can force a reload attempt here by setting a delayed call to refreshAdvert
-			setTimeout( refresh, 10000 );	
+//			setTimeout( refresh, 10000 );	
 		}
 		
 		private function adverts_userDismissedHandler( event:AdvertEvent ):void
@@ -195,48 +285,27 @@ package
 			message( "adverts_userShowAdHandler" );
 		}
 		
-		private var _stage:int = 0;
 		
-		private function stage_clickHandler( event:MouseEvent ):void
+		
+		
+		
+		private function interstitial_loadedHandler( event:InterstitialEvent ):void
 		{
-			if (Adverts.isSupported)
-			{
-				try
-				{
-					switch(_stage)
-					{
-						case 0:
-						{
-							var size:AdvertPosition = new AdvertPosition();
-							size.verticalAlign = AdvertPosition.ALIGN_BOTTOM;
-							size.horizontalAlign = AdvertPosition.ALIGN_RIGHT;
-							
-							message("Adverts.showAdvert(" + size.toString() + ")");
-							Adverts.service.showAdvert( size );
-							break;
-						}
-							
-						case 1:
-						{
-							Adverts.service.refreshAdvert();
-//							setTimeout( refresh, 4000 );
-							break;
-						}
-							
-						case 2:
-						{
-							Adverts.service.hideAdvert();
-							break;
-						}
-					}
-				}
-				catch (e:Error)
-				{
-					message( "ERROR::"+e.message );
-				}
-			}
-			_stage ++; if (_stage > 2) _stage = 0;
+			message( "interstitial_loadedHandler" );
 		}
+		
+		private function interstitial_errorHandler( event:InterstitialEvent ):void
+		{
+			message( "interstitial_errorHandler" );
+		}
+		
+		private function interstitial_dismissedHandler( event:InterstitialEvent ):void
+		{
+			message( "interstitial_dismissedHandler" );
+		}
+
+		
 	}
+	
 }
 

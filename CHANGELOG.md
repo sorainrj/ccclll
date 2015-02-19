@@ -1,5 +1,16 @@
 
 
+###### 2015.02.19
+
+Added Interstitial Advert support for AdMob and iAd 
+Fixed Flash Builder 4.6 missing class issue
+iOS: Updated Google Mobile Ads library to version 7.0.0
+iOS: Fix for smart banner rendering in landscape mode when flat
+iOS: Fix for iOS 8 dimension changes for position banner adverts
+iOS: Fixed issue with arm64 compilation error undefined symbols (resolves #5) (notify #12)
+Android: Separated Google Play Libraries into separate ANE
+
+
 ###### 2015.01.31
 
 iOS: Removed reference to the IDFA returned as the advertising identifier in the iAdOnly version to avoid review rejection (resolves #3)
