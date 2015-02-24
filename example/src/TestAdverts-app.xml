@@ -25,6 +25,7 @@
 		<image512x512>icons/icon512x512.png</image512x512>
 	</icon>
 
+	
 	<iPhone>
         <InfoAdditions><![CDATA[
 			<key>UIDeviceFamily</key>
@@ -39,21 +40,33 @@
         </Entitlements>
     </iPhone>
     
+	
 	<android>
         <manifestAdditions><![CDATA[
 			<manifest android:installLocation="auto">
+			
+				<!--Required. Used to access the Internet to make ad requests-->
 			    <uses-permission android:name="android.permission.INTERNET"/>
+			    
+			    <!--Optional. Used to check if an internet connection is available prior to making an ad request.-->
 			    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 			    
 			    <application>
+			    
 			    	<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
-			    	<activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+			    	
+			    	<activity 
+			    		android:name="com.google.android.gms.ads.AdActivity"
+			    		android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" 
+			    		android:theme="@android:style/Theme.Translucent" />
+			    		
 			    </application>
 			    
 			</manifest>
 		]]></manifestAdditions>
     </android>
     
+	
     <extensions>
         <extensionID>com.distriqt.Adverts</extensionID>
     </extensions>

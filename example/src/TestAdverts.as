@@ -104,8 +104,9 @@ package
 				
 				message( "Adverts Supported: " + Adverts.isSupported );
 				message( "Adverts Version:   " + Adverts.service.version );
-				message( "ADMOB Supported:   " + Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_ADMOB ) );
 				message( "IAD Supported:     " + Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_IAD ) );
+				message( "ADMOB Supported:   " + Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_ADMOB ) );
+				message( "DOUBLECLICK Supported:   " + Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_DOUBLECLICK ) );
 				
 				if (Adverts.isSupported)
 				{
@@ -119,18 +120,23 @@ package
 					Adverts.service.interstitials.addEventListener( InterstitialEvent.ERROR, 		interstitial_errorHandler, 		false, 0, true );
 					Adverts.service.interstitials.addEventListener( InterstitialEvent.DISMISSED, 	interstitial_dismissedHandler, 	false, 0, true );
 					
-					if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_ADMOB ))
+					if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_DOUBLECLICK ))
 					{
-						message( "Initialising ADMOB" );
-						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB, _adUnitId );
-//						Adverts.service.setTestDetails( [ "" ] );
+						message( "Initialising DOUBLECLICK" );
+						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_DOUBLECLICK, "/6499/example/banner" );
 					}
-					else 
-					if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_IAD ))
-					{
-						message( "Initialising iAD" );
-						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_IAD, IAD_ACCOUNT_ID );
-					}
+//					if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_ADMOB ))
+//					{
+//						message( "Initialising ADMOB" );
+//						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB, _adUnitId );
+////						Adverts.service.setTestDetails( [ "" ] );
+//					}
+//					else 
+//					if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_IAD ))
+//					{
+//						message( "Initialising iAD" );
+//						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_IAD, IAD_ACCOUNT_ID );
+//					}
 					else
 					{
 						message( "No platform supported" );

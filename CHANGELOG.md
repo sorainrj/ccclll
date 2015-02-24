@@ -1,5 +1,10 @@
 
 
+###### 2015.02.24
+
+Android: Fixed crash when initialising doubleClick (resolves #10)
+
+
 ###### 2015.02.19
 
 Added Interstitial Advert support for AdMob and iAd 
