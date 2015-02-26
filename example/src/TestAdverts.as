@@ -57,7 +57,8 @@ package
 			_adUnitId = adUnitId;
 			_adUnitIdInterstitial = adUnitIdInterstitial;
 			create();
-			init();
+//			init();
+			setTimeout( init, 2000 );
 		}
 		
 		
@@ -120,17 +121,17 @@ package
 					Adverts.service.interstitials.addEventListener( InterstitialEvent.ERROR, 		interstitial_errorHandler, 		false, 0, true );
 					Adverts.service.interstitials.addEventListener( InterstitialEvent.DISMISSED, 	interstitial_dismissedHandler, 	false, 0, true );
 					
-					if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_DOUBLECLICK ))
-					{
-						message( "Initialising DOUBLECLICK" );
-						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_DOUBLECLICK, "/6499/example/banner" );
-					}
-//					if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_ADMOB ))
+//					if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_DOUBLECLICK ))
 //					{
-//						message( "Initialising ADMOB" );
-//						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB, _adUnitId );
-////						Adverts.service.setTestDetails( [ "" ] );
+//						message( "Initialising DOUBLECLICK" );
+//						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_DOUBLECLICK, "/6499/example/banner" );
 //					}
+					if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_ADMOB ))
+					{
+						message( "Initialising ADMOB" );
+						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB, _adUnitId );
+						Adverts.service.setTestDetails( [ "AE55BF111A56AF3D162361BA27F32A4B" ] );
+					}
 //					else 
 //					if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_IAD ))
 //					{
@@ -199,8 +200,9 @@ package
 						case 0:
 						{
 							var size:AdvertPosition = new AdvertPosition();
-							size.verticalAlign   = AdvertPosition.ALIGN_BOTTOM;
-							size.horizontalAlign = AdvertPosition.ALIGN_RIGHT;
+							size.y = 50;
+							size.verticalAlign   = AdvertPosition.ALIGN_TOP;
+							size.horizontalAlign = AdvertPosition.ALIGN_CENTER;
 							
 							message("Adverts.showAdvert(" + size.toString() + ")");
 							Adverts.service.showAdvert( size );

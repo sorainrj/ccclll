@@ -1,5 +1,10 @@
 
 
+###### 2015.02.26
+
+Android: Fixed banner positioning issue (resolves #15)
+
+
 ###### 2015.02.24
 
 Android: Fixed crash when initialising doubleClick (resolves #10)
