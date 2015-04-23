@@ -39,7 +39,7 @@ package
 	 */
 	public class TestAdverts extends Sprite
 	{
-		public static const APP_KEY 			: String = "APPLICATION_KEY";
+		public static const APP_KEY 						: String = "APPLICATION_KEY";
 		
 		public static const ADMOB_AD_UNIT_ID				: String = "ADMOB_BANNER_AD_UNIT_ID";
 		public static const ADMOB_AD_UNIT_ID_INTERSTITIAL	: String = "ADMOB_INTERSTITIAL_AD_UNIT_ID";
@@ -81,7 +81,7 @@ package
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 
-			var tf:TextFormat = new TextFormat( "_typewriter", 18 );
+			var tf:TextFormat = new TextFormat( "_typewriter", 16 );
 			_text = new TextField();
 			_text.defaultTextFormat = tf;
 			_text.y = 40;
@@ -96,17 +96,15 @@ package
 		{
 			try
 			{
-//				GooglePlayServices.init("");
+//				GooglePlayServices.init( _appKey );
 //				message( "GooglePlayServices version: " + GooglePlayServices.service.googlePlayServicesVersion() );
 				
-				
-				var time:int = getTimer();
 				Adverts.init( _appKey );
 				
-				message( "Adverts Supported: " + Adverts.isSupported );
-				message( "Adverts Version:   " + Adverts.service.version );
-				message( "IAD Supported:     " + Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_IAD ) );
-				message( "ADMOB Supported:   " + Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_ADMOB ) );
+				message( "Adverts Supported:       " + Adverts.isSupported );
+				message( "Adverts Version:         " + Adverts.service.version );
+				message( "IAD Supported:           " + Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_IAD ) );
+				message( "ADMOB Supported:         " + Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_ADMOB ) );
 				message( "DOUBLECLICK Supported:   " + Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_DOUBLECLICK ) );
 				
 				if (Adverts.isSupported)
@@ -130,7 +128,7 @@ package
 					{
 						message( "Initialising ADMOB" );
 						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB, _adUnitId );
-						Adverts.service.setTestDetails( [ "AE55BF111A56AF3D162361BA27F32A4B" ] );
+//						Adverts.service.setTestDetails( [ "AE55BF111A56AF3D162361BA27F32A4B" ] );
 					}
 //					else 
 //					if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_IAD ))
@@ -186,8 +184,8 @@ package
 			}
 		}
 		
-		
-		private var _stage:int = 0;
+		private const START_STAGE:int = 0;
+		private var _stage:int = START_STAGE;
 		
 		private function stage_clickHandler( event:MouseEvent ):void
 		{
@@ -200,8 +198,7 @@ package
 						case 0:
 						{
 							var size:AdvertPosition = new AdvertPosition();
-							size.y = 50;
-							size.verticalAlign   = AdvertPosition.ALIGN_TOP;
+							size.verticalAlign   = AdvertPosition.ALIGN_BOTTOM;
 							size.horizontalAlign = AdvertPosition.ALIGN_CENTER;
 							
 							message("Adverts.showAdvert(" + size.toString() + ")");
@@ -257,7 +254,7 @@ package
 					message( "ERROR::"+e.message );
 				}
 			}
-			_stage ++; if (_stage > 4) _stage = 0;
+			_stage ++; if (_stage > 4) _stage = START_STAGE;
 		}
 		
 		
