@@ -1,5 +1,10 @@
 
 
+###### 2015.06.26
+
+Android: Fix to prevent unusual crashes (resolves #21)
+
+
 ###### 2015.04.23
 
 Android: Resolved issue with AdMob test details (resolves #19)

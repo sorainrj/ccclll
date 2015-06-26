@@ -20,6 +20,7 @@ package
 	import com.distriqt.extension.adverts.Adverts;
 	import com.distriqt.extension.adverts.events.AdvertEvent;
 	import com.distriqt.extension.adverts.events.InterstitialEvent;
+	import com.distriqt.extension.googleplayservices.GooglePlayServices;
 	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
@@ -28,8 +29,6 @@ package
 	import flash.events.MouseEvent;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
-	import flash.utils.getTimer;
-	import flash.utils.setTimeout;
 	
 	
 	/**	
@@ -39,26 +38,29 @@ package
 	 */
 	public class TestAdverts extends Sprite
 	{
-		public static const APP_KEY 						: String = "APPLICATION_KEY";
+		public static const APP_KEY 								: String = "APPLICATION_KEY";
 		
-		public static const ADMOB_AD_UNIT_ID				: String = "ADMOB_BANNER_AD_UNIT_ID";
-		public static const ADMOB_AD_UNIT_ID_INTERSTITIAL	: String = "ADMOB_INTERSTITIAL_AD_UNIT_ID";
+		public static const ADMOB_AD_UNIT_ID_ANDROID				: String = "ca-app-pub-4920614350579341/4907715712";
+		public static const ADMOB_AD_UNIT_ID_INTERSTITIAL_ANDROID	: String = "ca-app-pub-4920614350579341/9513358916";
 		
-		public static const IAD_ACCOUNT_ID					: String = "";
+		public static const ADMOB_AD_UNIT_ID_IOS					: String = "ca-app-pub-4920614350579341/7276417316";
+		public static const ADMOB_AD_UNIT_ID_INTERSTITIAL_IOS		: String = "ca-app-pub-4920614350579341/7447554111";
+		
+		public static const IAD_ACCOUNT_ID							: String = "";
 		
 		
 		/**
 		 * Class constructor 
 		 */	
-		public function TestAdverts( appKey:String=APP_KEY, adUnitId:String=ADMOB_AD_UNIT_ID, adUnitIdInterstitial:String=ADMOB_AD_UNIT_ID_INTERSTITIAL )
+		public function TestAdverts( appKey:String=APP_KEY, adUnitId:String=ADMOB_AD_UNIT_ID_IOS, adUnitIdInterstitial:String=ADMOB_AD_UNIT_ID_INTERSTITIAL_IOS )
 		{
 			super();
 			_appKey = appKey;
 			_adUnitId = adUnitId;
 			_adUnitIdInterstitial = adUnitIdInterstitial;
+
 			create();
-//			init();
-			setTimeout( init, 2000 );
+			init();
 		}
 		
 		
@@ -96,8 +98,8 @@ package
 		{
 			try
 			{
-//				GooglePlayServices.init( _appKey );
-//				message( "GooglePlayServices version: " + GooglePlayServices.service.googlePlayServicesVersion() );
+				GooglePlayServices.init( _appKey );
+				message( "GooglePlayServices version: " + GooglePlayServices.service.googlePlayServicesVersion() );
 				
 				Adverts.init( _appKey );
 				
@@ -127,7 +129,7 @@ package
 					if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_ADMOB ))
 					{
 						message( "Initialising ADMOB" );
-						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB, _adUnitId );
+						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB );
 //						Adverts.service.setTestDetails( [ "AE55BF111A56AF3D162361BA27F32A4B" ] );
 					}
 //					else 
@@ -202,7 +204,7 @@ package
 							size.horizontalAlign = AdvertPosition.ALIGN_CENTER;
 							
 							message("Adverts.showAdvert(" + size.toString() + ")");
-							Adverts.service.showAdvert( size );
+							Adverts.service.showAdvert( size, _adUnitId );
 							break;
 						}
 							
