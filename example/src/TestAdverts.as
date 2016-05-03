@@ -20,7 +20,6 @@ package
 	import com.distriqt.extension.adverts.Adverts;
 	import com.distriqt.extension.adverts.events.AdvertEvent;
 	import com.distriqt.extension.adverts.events.InterstitialEvent;
-	import com.distriqt.extension.googleplayservices.GooglePlayServices;
 	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
@@ -98,8 +97,8 @@ package
 		{
 			try
 			{
-				GooglePlayServices.init( _appKey );
-				message( "GooglePlayServices version: " + GooglePlayServices.service.googlePlayServicesVersion() );
+//				GooglePlayServices.init( _appKey );
+//				message( "GooglePlayServices version: " + GooglePlayServices.service.googlePlayServicesVersion() );
 				
 				Adverts.init( _appKey );
 				
@@ -130,7 +129,7 @@ package
 					{
 						message( "Initialising ADMOB" );
 						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB );
-//						Adverts.service.setTestDetails( [ "AE55BF111A56AF3D162361BA27F32A4B" ] );
+						Adverts.service.setTestDetails( [ "1FAB0F56976E6D083FB3EDCE46E18DAC" ] );
 					}
 //					else 
 //					if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_IAD ))
@@ -186,8 +185,7 @@ package
 			}
 		}
 		
-		private const START_STAGE:int = 0;
-		private var _stage:int = START_STAGE;
+		private var _stage:int = 0;
 		
 		private function stage_clickHandler( event:MouseEvent ):void
 		{
@@ -249,14 +247,18 @@ package
 							break;
 						}
 
+						default:
+							_stage = 0;
+							return;
+							
 					}
 				}
 				catch (e:Error)
 				{
 					message( "ERROR::"+e.message );
 				}
+				_stage ++; 
 			}
-			_stage ++; if (_stage > 4) _stage = START_STAGE;
 		}
 		
 		

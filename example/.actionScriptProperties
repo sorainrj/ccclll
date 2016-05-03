@@ -27,9 +27,9 @@
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/spark_dmv.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_dmv.swc" useDefaultLinkType="false"/>
-          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/air/applicationupdater_ui.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/air/airframework.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_flashflexkit.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/air/applicationupdater_ui.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/mobile/mobilecomponents.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_agent.swc" useDefaultLinkType="false"/>
         </excludedEntries>
@@ -37,7 +37,6 @@
       <libraryPathEntry kind="3" linkType="1" path="/distriqt.extension.adverts/bin/distriqt.extension.adverts.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="5" linkType="2" path="/Users/marchbold/work/distriqt/extensions/extensions/adverts/trunk/bin/com.distriqt.Adverts.ane"/>
       <libraryPathEntry kind="5" linkType="2" path="${DOCUMENTS}/extensions/googleplayservices/trunk/bin/com.distriqt.GooglePlayServices.ane"/>
-      <libraryPathEntry kind="5" linkType="2" path="${DOCUMENTS}/extensions/advertsmediation/trunk/bin/com.distriqt.AdvertsMediation.ane"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
@@ -56,15 +55,13 @@
         <airExcludes/>
         <anePaths>
           <anePathEntry path="${DOCUMENTS}/extensions/adverts/trunk/bin/com.distriqt.Adverts.ane"/>
-          <anePathEntry path="${DOCUMENTS}/extensions/googleplayservices/trunk/bin/com.distriqt.GooglePlayServices.ane"/>
-          <anePathEntry path="${DOCUMENTS}/extensions/advertsmediation/trunk/bin/com.distriqt.AdvertsMediation.ane"/>
         </anePaths>
         <newLaunchParams/>
         <modifiedLaunchParams/>
         <newPackagingParams/>
         <modifiedPackagingParams/>
       </airSettings>
-      <multiPlatformSettings enabled="true" hideAneLibSymbols="0" includePlatformLibs="false" nativeSDKPathString="/Users/marchbold/work/sdks/ios/iPhoneOS8.1.sdk" platformID="com.adobe.flexide.multiplatform.ios.platform" reducedSizePackaging="false" version="2"/>
+      <multiPlatformSettings enabled="true" hideAneLibSymbols="0" includePlatformLibs="false" nativeSDKPathString="/Users/marchbold/work/sdks/ios/iPhoneOS9.3.sdk" platformID="com.adobe.flexide.multiplatform.ios.platform" reducedSizePackaging="false" version="2"/>
       <actionScriptSettings version="1"/>
     </buildTarget>
     <buildTarget airDownloadURL="https://market.android.com/details?id=com.adobe.air" androidSettingsVersion="2" buildTargetName="device" isCurrent="true" platformId="com.adobe.flexide.multiplatform.android.platform">
@@ -73,7 +70,6 @@
         <anePaths>
           <anePathEntry path="${DOCUMENTS}/extensions/adverts/trunk/bin/com.distriqt.Adverts.ane"/>
           <anePathEntry path="${DOCUMENTS}/extensions/googleplayservices/trunk/bin/com.distriqt.GooglePlayServices.ane"/>
-          <anePathEntry path="${DOCUMENTS}/extensions/advertsmediation/trunk/bin/com.distriqt.AdvertsMediation.ane"/>
         </anePaths>
         <newLaunchParams/>
         <modifiedLaunchParams/>

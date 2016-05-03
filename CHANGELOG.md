@@ -1,5 +1,12 @@
 
 
+###### 2016.05.03
+
+Updated SDK versions (#25)
+
+###### 2016.03.10
+
+
 ###### 2015.06.26
 
 Android: Fix to prevent unusual crashes (resolves #21)
