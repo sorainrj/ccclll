@@ -1,5 +1,10 @@
 
 
+###### 2016.05.20
+
+iOS: Resolved missing framework references (resolves #33, #25)
+
+
 ###### 2016.05.03
 
 Updated SDK versions (#25)
