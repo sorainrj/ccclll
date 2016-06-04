@@ -129,7 +129,9 @@ package
 					{
 						message( "Initialising ADMOB" );
 						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB );
-						Adverts.service.setTestDetails( [ "1FAB0F56976E6D083FB3EDCE46E18DAC" ] );
+						Adverts.service.setTestDetails( [ "387007BB700741CF24FAB668D7990B80" ] );
+//						Adverts.service.setTestDetails( [ "261473327613FA6ED6CE00240AFF7180" ] );
+//						Adverts.service.setTestDetails( [ "1FAB0F56976E6D083FB3EDCE46E18DAC" ] );
 					}
 //					else 
 //					if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_IAD ))
@@ -205,7 +207,7 @@ package
 							Adverts.service.showAdvert( size, _adUnitId );
 							break;
 						}
-							
+						
 						case 1:
 						{
 							Adverts.service.refreshAdvert();
@@ -230,7 +232,7 @@ package
 							}
 							break;
 						}
-							
+						
 						case 4:
 						{
 							if (Adverts.service.interstitials.isSupported)

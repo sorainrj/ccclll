@@ -1,5 +1,10 @@
 
 
+###### 2016.06.04
+
+Android: Minor view parameter changes (#35)
+
+
 ###### 2016.05.20
 
 iOS: Resolved missing framework references (resolves #33, #25)
