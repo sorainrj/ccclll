@@ -113,22 +113,22 @@ package com.distriqt.test.adverts
 					
 					Adverts.service.interstitials.show();
 					
-					setTimeout( function():void
-					{
-						message( "show dialog" );
-						Dialog.service.create(
-							new AlertBuilder( true )
-							.setTitle( "Alert" )
-							.setMessage( "Test Message" )
-							.addOption( "OK" )
-							.build()
-						).show();
-					}, 2000 );
-					
-					setTimeout( function():void
-					{
-						Adverts.service.interstitials.hide();
-					}, 4000 );
+//					setTimeout( function():void
+//					{
+//						message( "show dialog" );
+//						Dialog.service.create(
+//							new AlertBuilder( true )
+//							.setTitle( "Alert" )
+//							.setMessage( "Test Message" )
+//							.addOption( "OK" )
+//							.build()
+//						).show();
+//					}, 2000 );
+//					
+//					setTimeout( function():void
+//					{
+//						Adverts.service.interstitials.hide();
+//					}, 4000 );
 				}
 			}
 		}
