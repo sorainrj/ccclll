@@ -1,5 +1,10 @@
 
 
+###### 2017.01.06 [v4.0.003]
+
+iAd Shutdown, updated SDKs, new documentation
+
+
 ###### 2016.06.04
 
 Android: Minor view parameter changes (#35)

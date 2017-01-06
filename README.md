@@ -1,13 +1,21 @@
+built by [distriqt //](https://airnativeextensions.com) 
 
-
-
-This extension was built by distriqt // 
+![](images/hero.png)
 
 # Adverts
 
-This extension allows you to monetise your application by displaying advertisements.
+The [Adverts](https://airnativeextensions.com/extension/com.distriqt.Adverts) extension 
+gives you the ability to display adverts in your AIR application.
 
-Features
+This extension allows you to monetise your application by displaying advertisements, including banners and interstitials.
+
+Currently the extension supports the following advertising platforms:
+
+- Google AdMob: Android, iOS
+- Apple iAd: iOS
+
+
+### Features
 
 - Show/Hide adverts
 - Identical cross-platform implementation
@@ -16,24 +24,30 @@ Features
 - AdMob on both iOS and Android
 
 
+As with all our extensions you get access to a year of support and updates as we are 
+continually improving and updating the extensions for OS updates and feature requests.
+
+
+
 ## Documentation
 
-Online version of the latest ASDocs:
+Latest documentation can be found in the [wiki](https://github.com/distriqt/ANE-Adverts/wiki)
 
-http://airnativeextensions.com/extension/com.distriqt.Adverts
+More information here: 
 
-```actionscript
-Adverts.service.showAdvert( new AdvertPosition() );
-```
+[com.distriqt.Adverts](https://airnativeextensions.com/extension/com.distriqt.Adverts)
+
 
 
 ## License
 
 You can purchase a license for using this extension:
 
-http://airnativeextensions.com/
+[airnativeextensions.com](https://airnativeextensions.com/)
 
 distriqt retains all copyright.
 
+
+![](images/promo.png)
 
 

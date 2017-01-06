@@ -1,0 +1,52 @@
+					<!-- ADFALCON MEDIATION ADDITIONS -->
+					<activity android:name="com.noqoush.adfalcon.android.sdk.ADFBrowser" android:configChanges="keyboard|keyboardHidden|orientation|uiMode|screenLayout|screenSize|smallestScreenSize" android:hardwareAccelerated="true"></activity>
+					<activity android:name="com.noqoush.adfalcon.android.sdk.ADFActivity" android:configChanges="keyboard|keyboardHidden|orientation|uiMode|screenLayout|screenSize|smallestScreenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" android:hardwareAccelerated="true"></activity>
+					<activity android:name="com.noqoush.adfalcon.android.sdk.ADFCanvas" android:configChanges="keyboard|keyboardHidden|orientation|uiMode|screenLayout|screenSize|smallestScreenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar" android:hardwareAccelerated="true"></activity>
+					
+					
+					<!-- INMOBI MEDIATION ADDITIONS -->
+					<activity android:name="com.inmobi.androidsdk.IMBrowserActivity" android:configChanges="keyboardHidden|orientation|keyboard|smallestScreenSize|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar" android:hardwareAccelerated="true" />
+					<receiver android:name="com.inmobi.commons.analytics.androidsdk.IMAdTrackerReceiver" android:enabled="true" android:exported="true" >
+						<intent-filter>
+							<action android:name="com.android.vending.INSTALL_REFERRER" />
+							<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+							<action android:name="com.inmobi.share.id" />
+						</intent-filter>
+					</receiver>
+					
+					
+					<!-- LIFESTREETMEDIA MEDIATION ADDITIONS -->
+					<activity android:name="com.lifestreet.android.lsmsdk.ads.InterstitialAdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+					<activity android:name="com.lifestreet.android.lsmsdk.mraid.MRAIDInterstitialActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+					<activity android:name="com.lifestreet.android.lsmsdk.mraid.VideoPlayerActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+					
+					
+					<!-- MILLENNIAMEDIA MEDIATION ADDITIONS -->
+					<activity android:name="com.millennialmedia.android.MMActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar" android:configChanges="keyboardHidden|orientation|keyboard" ></activity>
+
+					
+					<!-- VSERV MEDIATION ADDITIONS -->
+					<activity
+						android:name="mobi.vserv.android.ads.VservAdManager"
+						android:configChanges="touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize"
+						android:launchMode="singleTop"
+						android:multiprocess="true"
+						android:process=":vserv"
+						android:windowSoftInputMode="adjustPan" />
+					<activity
+						android:name="mobi.vserv.org.ormma.view.Browser"
+						android:configChanges="touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize"
+						android:windowSoftInputMode="adjustPan" />
+					<activity
+						android:name="mobi.vserv.org.ormma.view.OrmmaActionHandler"
+						android:multiprocess="true"
+						android:process=":vserv"
+						android:configChanges="touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize"
+						android:windowSoftInputMode="adjustPan" />
+					
+					
+					<!-- FLURRY ADDITIONS -->
+					<activity
+						android:name="com.flurry.android.FlurryFullscreenTakeoverActivity"
+						android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize">
+					</activity> 
