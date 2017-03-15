@@ -1,5 +1,19 @@
 
 
+###### 2017.03.15 [v4.0.010]
+
+Removed iOS Simulator version to reduce file size
+Android: Updated SDK to v10.2.0
+iOS: Updated SDK to v3.14.0
+
+
+###### 2017.03.15 [v4.0.010]
+
+Removed iOS Simulator version to reduce file size
+Android: Updated SDK to v10.2.0
+iOS: Updated SDK to v3.14.0
+
+
 ###### 2017.01.06 [v4.0.003]
 
 iAd Shutdown, updated SDKs, new documentation

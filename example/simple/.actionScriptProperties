@@ -52,8 +52,8 @@
   <buildCSSFiles/>
   <flashCatalyst validateFlashCatalystCompatibility="false"/>
   <buildTargets>
-    <buildTarget buildTargetName="device" iosSettingsVersion="2" isCurrent="true" platformId="com.adobe.flexide.multiplatform.ios.platform" provisioningFile="/Users/marchbold/Dropbox/work/certs/distriqt_test_profile.mobileprovision" releasePackageType="">
-      <airSettings airCertificatePath="/Users/marchbold/Dropbox/work/certs/iPhoneDeveloper_MichaelArchbold_Certificates.p12" airTimestamp="true" anePathSet="true" version="1">
+    <buildTarget buildTargetName="device" iosSettingsVersion="2" isCurrent="true" platformId="com.adobe.flexide.multiplatform.ios.platform" provisioningFile="/Users/marchbold/Dropbox/work/certs/com.distriqt.test/development/distriqt_test_profile.mobileprovision" releasePackageType="">
+      <airSettings airCertificatePath="/Users/marchbold/Dropbox/work/certs/distriqt/development/Certificates.p12" airTimestamp="true" anePathSet="true" version="1">
         <airExcludes/>
         <anePaths>
           <anePathEntry path="${DOCUMENTS}/supportextensions/core/source/build/com.distriqt.Core.ane"/>
@@ -66,11 +66,11 @@
         <newPackagingParams/>
         <modifiedPackagingParams/>
       </airSettings>
-      <multiPlatformSettings enabled="true" hideAneLibSymbols="0" includePlatformLibs="false" nativeSDKPathString="/Users/marchbold/work/sdks/ios/iPhoneOS9.3.sdk" platformID="com.adobe.flexide.multiplatform.ios.platform" reducedSizePackaging="false" version="2"/>
+      <multiPlatformSettings enabled="true" hideAneLibSymbols="0" includePlatformLibs="false" nativeSDKPathString="/Users/marchbold/work/sdks/ios/iPhoneOS10.2.sdk" platformID="com.adobe.flexide.multiplatform.ios.platform" reducedSizePackaging="false" version="2"/>
       <actionScriptSettings version="1"/>
     </buildTarget>
     <buildTarget airDownloadURL="https://market.android.com/details?id=com.adobe.air" androidSettingsVersion="2" buildTargetName="device" isCurrent="true" platformId="com.adobe.flexide.multiplatform.android.platform">
-      <airSettings airCertificatePath="/Users/marchbold/Dropbox/work/certs/distriqt_selfsigned_newcert.p12" airTimestamp="true" anePathSet="true" version="1">
+      <airSettings airCertificatePath="/Users/marchbold/Dropbox/work/certs/distriqt_air_selfsign_cert.p12" airTimestamp="true" anePathSet="true" version="1">
         <airExcludes/>
         <anePaths>
           <anePathEntry path="${DOCUMENTS}/supportextensions/core/source/build/com.distriqt.Core.ane"/>

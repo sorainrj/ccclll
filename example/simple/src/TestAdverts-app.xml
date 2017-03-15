@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<application xmlns="http://ns.adobe.com/air/application/17.0">
+<application xmlns="http://ns.adobe.com/air/application/25.0">
 	<id>com.distriqt.test</id>
-	<filename>TestAdverts</filename>
-	<name>TestAdverts</name>
+	<filename>TestAdvertsDistriqt</filename>
+	<name>TestAdvertsDistriqt</name>
 	<versionNumber>0.0.1</versionNumber>
 
 	
 	<initialWindow>
 		<content>[This value will be overwritten by Flash Builder in the output app.xml]</content>
+		<fullScreen>true</fullScreen>
+		<visible>true</visible>
+		<renderMode>direct</renderMode>
+		<systemChrome>standard</systemChrome>
 		<autoOrients>true</autoOrients>
-        <fullScreen>false</fullScreen>
-        <visible>true</visible>
-    </initialWindow>
-    
+		<depthAndStencil>true</depthAndStencil>
+	</initialWindow>
+	
 
 	<icon> 
 		<image16x16>icons/icon16x16.png</image16x16>
@@ -29,25 +32,43 @@
 
 	
 	<iPhone>
-        <InfoAdditions><![CDATA[
+		<InfoAdditions><![CDATA[
 			<key>UIDeviceFamily</key>
 			<array>
 				<string>1</string>
+				<string>2</string>
 			</array>
+			
+			<key>NSAppTransportSecurity</key>
+			<dict>
+				<key>NSAllowsArbitraryLoads</key>
+				<true/>
+				<key>NSAllowsArbitraryLoadsForMedia</key>
+				<true/>
+				<key>NSAllowsArbitraryLoadsInWebContent</key>
+				<true/>
+			</dict>
+
 		]]></InfoAdditions>
-        <requestedDisplayResolution>high</requestedDisplayResolution>
-        <Entitlements>
-            <![CDATA[
-            ]]>
-        </Entitlements>
-    </iPhone>
-    
+		<requestedDisplayResolution>high</requestedDisplayResolution>
+		<Entitlements>
+			<![CDATA[
+			]]>
+		</Entitlements>
+	</iPhone>
+	
 	
 	<android>
 		<manifestAdditions><![CDATA[
 			<manifest android:installLocation="auto">
 				<uses-permission android:name="android.permission.INTERNET"/>
 				<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+				
+				<!-- 
+					Required by: INMOBI, VSERV 
+					Optional for: FLURRY
+				 -->
+				<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 				
 				<application>
 				   
@@ -58,16 +79,19 @@
 						android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" 
 						android:theme="@android:style/Theme.Translucent" />
 						
+					
 				</application>
-			    
+				
 			</manifest>
 		]]></manifestAdditions>
 	</android>
-    
+	
 	
 	<extensions>
 		<extensionID>com.distriqt.Adverts</extensionID>
-		<extensionID>com.distriqt.GooglePlayServices</extensionID>
+		<extensionID>com.distriqt.Core</extensionID>
+		<extensionID>com.distriqt.playservices.Ads</extensionID>
+		<extensionID>com.distriqt.playservices.Base</extensionID>
 	</extensions>
-    
+	
 </application>

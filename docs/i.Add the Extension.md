@@ -93,3 +93,37 @@ You should add the listing below to your manifest, replacing `APPLICATION_ID` wi
 </manifest>
 ```
 
+
+## iOS Additions
+
+App Transport Security (ATS) is a privacy feature introduced in iOS 9. It's enabled 
+by default for new applications and enforces secure connections.
+
+All iOS 9 or higher devices running apps that don't disable ATS will be affected by 
+this change. This may affect your app's integration with the Google Mobile Ads SDK.
+
+The following log message appears when a non-ATS compliant app attempts to serve an 
+ad via HTTP on iOS 9 or iOS 10:
+
+> App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app's Info.plist file.
+
+To ensure your ads are not impacted by ATS, add the following to the `InfoAdditions`
+node in your `iPhone` settings of your application descriptor:
+
+```xml
+<key>NSAppTransportSecurity</key>
+<dict>
+	<key>NSAllowsArbitraryLoads</key>
+	<true/>
+	<key>NSAllowsArbitraryLoadsForMedia</key>
+	<true/>
+	<key>NSAllowsArbitraryLoadsInWebContent</key>
+	<true/>
+</dict>
+```
+
+The `NSAllowsArbitraryLoads` exception is required to make sure your ads are not 
+impacted by ATS on iOS 9 devices, while `NSAllowsArbitraryLoadsForMedia` and 
+`NSAllowsAribtraryLoadsInWebContent` are required to make sure your ads are 
+not impacted by ATS on iOS 10 devices.
+

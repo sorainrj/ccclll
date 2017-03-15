@@ -97,9 +97,6 @@ package
 		{
 			try
 			{
-//				GooglePlayServices.init( _appKey );
-//				message( "GooglePlayServices version: " + GooglePlayServices.service.googlePlayServicesVersion() );
-				
 				Adverts.init( _appKey );
 				
 				message( "Adverts Supported:       " + Adverts.isSupported );
@@ -129,9 +126,7 @@ package
 					{
 						message( "Initialising ADMOB" );
 						Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB );
-						Adverts.service.setTestDetails( [ "387007BB700741CF24FAB668D7990B80" ] );
-//						Adverts.service.setTestDetails( [ "261473327613FA6ED6CE00240AFF7180" ] );
-//						Adverts.service.setTestDetails( [ "1FAB0F56976E6D083FB3EDCE46E18DAC" ] );
+						Adverts.service.setTestDetails( [ "a924a6ab51e8b35d7433ad0315c9889b" ] );
 					}
 //					else 
 //					if (Adverts.service.isPlatformSupported( AdvertPlatform.PLATFORM_IAD ))
