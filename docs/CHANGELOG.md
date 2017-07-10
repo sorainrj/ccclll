@@ -1,5 +1,10 @@
 
 
+###### 2017.07.10 [v4.0.011]
+
+Updated for compatibility with new Core library (for Notifications/PushNotifications fix)
+
+
 ###### 2017.03.15 [v4.0.010]
 
 Removed iOS Simulator version to reduce file size
