@@ -16,12 +16,8 @@ package com.distriqt.test.adverts
 	import com.distriqt.extension.adverts.AdvertPlatform;
 	import com.distriqt.extension.adverts.Adverts;
 	import com.distriqt.extension.adverts.events.InterstitialEvent;
-	import com.distriqt.extension.dialog.Dialog;
-	import com.distriqt.extension.dialog.builders.AlertBuilder;
 	
-	import flash.utils.setTimeout;
-
-	/**	
+	/**
 	 */
 	public class AdvertsTests
 	{
@@ -53,7 +49,6 @@ package com.distriqt.test.adverts
 			try
 			{
 				Adverts.init( Config.distriqtApplicationKey );
-				Dialog.init( "49ad0dbbfd9c6cfecd1c46c9ce71e2a9b68ce9f6DvbuB4AB3okhLjK1jzb4UKe6XF3AbXqImzadwEBITnA5q0e6JXlgjEgJ8+uuLs53dyMqjS9oDb5tWf6ZnyTOY3O2Tzr9UiCr2NctA/N7axj8XQaQf4sJUwz4zOfv2vShMQowTWOTI3WGxNG9BPHbT7MndJ6Cfbz5pAZKoT8b92xaI2Y270RPvjWOHNy+S7OR8NLuCOOGTenR9EegXYybBkwbWXAYBAFTzaqaJicht8+O+tO4p5f9ecudLf42eYoWr1IebB8oZrD2eUh9O8KUalXf7cgsTJpZrLx/V6QYKHmwZWNKLWf1vhhWieEBssCNkJoRaIsd+nep/L5xGxdD7A==" );
 				if (Adverts.isSupported)
 				{
 					message( "Adverts.version = " + Adverts.service.version );
@@ -62,14 +57,14 @@ package com.distriqt.test.adverts
 					Adverts.service.interstitials.addEventListener( InterstitialEvent.ERROR, errorHandler );
 					Adverts.service.interstitials.addEventListener( InterstitialEvent.DISMISSED, dismissedHandler );
 					
-					
-					Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB, "" );
-					if (Adverts.service.implementation == "Android")
-						Adverts.service.setTestDetails( [ "387007BB700741CF24FAB668D7990B80" ] );
+					Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB );
+					if (Adverts.service.implementation == "Android" && Config.testDeviceId.length > 0)
+						Adverts.service.setTestDetails( [ Config.testDeviceId ] );
 				}
 			}
 			catch (e:Error)
 			{
+				message( "ERROR: " + e.message );
 			}
 		}
 		
@@ -94,10 +89,7 @@ package com.distriqt.test.adverts
 			{
 				if (Adverts.service.interstitials.isSupported)
 				{
-					if (Adverts.service.implementation == "Android")
-						Adverts.service.interstitials.load( "ca-app-pub-4920614350579341/9513358916" );
-					else 
-						Adverts.service.interstitials.load( "ca-app-pub-4920614350579341/7447554111" );
+					Adverts.service.interstitials.load( Config.admob_adUnitId_interstitial );
 				}
 			}
 		}
@@ -110,25 +102,7 @@ package com.distriqt.test.adverts
 			{
 				if (Adverts.service.interstitials.isReady())
 				{
-					
 					Adverts.service.interstitials.show();
-					
-//					setTimeout( function():void
-//					{
-//						message( "show dialog" );
-//						Dialog.service.create(
-//							new AlertBuilder( true )
-//							.setTitle( "Alert" )
-//							.setMessage( "Test Message" )
-//							.addOption( "OK" )
-//							.build()
-//						).show();
-//					}, 2000 );
-//					
-//					setTimeout( function():void
-//					{
-//						Adverts.service.interstitials.hide();
-//					}, 4000 );
 				}
 			}
 		}

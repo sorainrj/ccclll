@@ -19,7 +19,10 @@ package
 		
 		public static var distriqtApplicationKey	: String = "";
 		
-		public static var scale : Number = 1;
+		public static var admob_adUnitId_banner : String = "";
+		public static var admob_adUnitId_interstitial : String = "";
+		
+		public static var testDeviceId : String = "";
 		
 	}
 }

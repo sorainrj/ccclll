@@ -96,8 +96,6 @@ package com.distriqt.test.adverts
 			
 			var theme:MetalWorksMobileTheme = new MetalWorksMobileTheme();
 			
-			Config.scale = 2 * Capabilities.screenDPI / theme.originalDPI;
-			
 			_text = new TextField( stage.stageWidth, stage.stageHeight, "", "_typewriter", 18, Color.WHITE );
 			_text.hAlign = HAlign.LEFT; 
 			_text.vAlign = VAlign.TOP;

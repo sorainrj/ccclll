@@ -1,5 +1,10 @@
 
 
+###### 2017.10.26 [v4.0.019]
+
+Corrected setTestDetails function definition (#50)
+
+
 ###### 2017.07.10 [v4.0.011]
 
 Updated for compatibility with new Core library (for Notifications/PushNotifications fix)

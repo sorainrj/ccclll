@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<application xmlns="http://ns.adobe.com/air/application/23.0">
+<application xmlns="http://ns.adobe.com/air/application/27.0">
 	<id>com.distriqt.test</id>
 	<filename>TestAdverts</filename>
 	<name>TestAdverts</name>
@@ -8,12 +8,11 @@
 	
 	<initialWindow>
 		<content>[This value will be overwritten by Flash Builder in the output app.xml]</content>
-		<fullScreen>true</fullScreen>
 		<visible>true</visible>
-		<renderMode>direct</renderMode>
-		<systemChrome>standard</systemChrome>
+		<fullScreen>true</fullScreen>
 		<autoOrients>true</autoOrients>
-		<depthAndStencil>true</depthAndStencil>
+		<renderMode>direct</renderMode>
+		<depthAndStencil>false</depthAndStencil>
 	</initialWindow>
 	
 
