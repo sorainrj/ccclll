@@ -30,6 +30,10 @@ Currently the extension supports the following advertising platforms:
 - Identical cross-platform implementation
 - Position and auto-alignment options
 - AdMob on both iOS and Android
+- Support for:
+  - Banners
+  - Interstitials
+  
 
 
 As with all our extensions you get access to a year of support and updates as we are 

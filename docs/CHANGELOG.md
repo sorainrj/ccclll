@@ -1,5 +1,18 @@
 
 
+###### 2018.03.10 [v5.0.083]
+
+Major update including complete refactor for future development
+Android: Updated SDK to v11.8.0
+iOS: Updated SDK to v7.28.0
+  - Added ability to get advert size (resolves #46)
+  - New method to retrieve advertising id
+  - Added advertising id tracking flag info (resolves #41)
+  - Added gender and birthday to requests (resolves #6)
+  - Better advert positioning (resolves #1) 
+  - Resolved crash (resolves #44)
+
+
 ###### 2017.10.26 [v4.0.019]
 
 Corrected setTestDetails function definition (#50)

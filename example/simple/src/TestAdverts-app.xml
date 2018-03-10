@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<application xmlns="http://ns.adobe.com/air/application/25.0">
+<application xmlns="http://ns.adobe.com/air/application/28.0">
 	<id>com.distriqt.test</id>
-	<filename>TestAdvertsDistriqt</filename>
-	<name>TestAdvertsDistriqt</name>
+	<filename>TestAdverts</filename>
+	<name>TestAdverts</name>
 	<versionNumber>0.0.1</versionNumber>
 
 	
 	<initialWindow>
 		<content>[This value will be overwritten by Flash Builder in the output app.xml]</content>
-		<fullScreen>true</fullScreen>
 		<visible>true</visible>
-		<renderMode>direct</renderMode>
-		<systemChrome>standard</systemChrome>
+		<fullScreen>true</fullScreen>
 		<autoOrients>true</autoOrients>
-		<depthAndStencil>true</depthAndStencil>
+		<renderMode>direct</renderMode>
+		<depthAndStencil>false</depthAndStencil>
 	</initialWindow>
 	
 
@@ -38,17 +37,16 @@
 				<string>1</string>
 				<string>2</string>
 			</array>
-			
-			<key>NSAppTransportSecurity</key>
-			<dict>
-				<key>NSAllowsArbitraryLoads</key>
-				<true/>
-				<key>NSAllowsArbitraryLoadsForMedia</key>
-				<true/>
-				<key>NSAllowsArbitraryLoadsInWebContent</key>
-				<true/>
-			</dict>
 
+			<key>NSAppTransportSecurity</key>
+            <dict>
+                <key>NSAllowsArbitraryLoads</key>
+                <true/>
+                <key>NSAllowsArbitraryLoadsForMedia</key>
+                <true/>
+                <key>NSAllowsArbitraryLoadsInWebContent</key>
+                <true/>
+            </dict>
 		]]></InfoAdditions>
 		<requestedDisplayResolution>high</requestedDisplayResolution>
 		<Entitlements>
@@ -64,14 +62,10 @@
 				<uses-permission android:name="android.permission.INTERNET"/>
 				<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 				
-				<!-- 
-					Required by: INMOBI, VSERV 
-					Optional for: FLURRY
-				 -->
 				<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 				
 				<application>
-				   
+				
 					<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
 						
 					<activity 

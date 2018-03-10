@@ -42,12 +42,12 @@ package com.distriqt.test.adverts
 		//	VARIABLES
 		//
 		
-		private var _helper		: AdvertsTests;
+		private var _tests		: AdvertsTests;
 
 		
 		//	UI
 		private var _text		: TextField;
-		private var _buttons	: Vector.<Button>;
+		private var _container	:ScrollContainer ;
 
 		
 		
@@ -74,14 +74,61 @@ package com.distriqt.test.adverts
 		}
 		
 		
-		////////////////////////////////////////////////////////
-		//	INTERNALS
-		//
-		
-		private function init():void
+		private function create():void
 		{
-			_helper = new AdvertsTests( this );
+			_text = new TextField( stage.stageWidth, stage.stageHeight, "", "_typewriter", 18, Color.WHITE );
+			_text.hAlign = HAlign.LEFT;
+			_text.vAlign = VAlign.TOP;
+			_text.y = 40;
+			_text.touchable = false;
+			
+			var layout:VerticalLayout = new VerticalLayout();
+			layout.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_RIGHT;
+			layout.verticalAlign = VerticalLayout.VERTICAL_ALIGN_MIDDLE;
+			layout.gap = 5;
+			
+			_container = new ScrollContainer();
+			_container.y = 40;
+			_container.layout = layout;
+			_container.width = stage.stageWidth;
+			_container.height = stage.stageHeight-40;
+			
+			_tests = new AdvertsTests( this );
+			
+			addAction( "Setup", _tests.setup );
+			addAction( "Dispose", _tests.destroy );
+			addAction( "Get Advertising Id", _tests.getAdvertisingId );
+			
+			
+			addAction( "Simple Test :AdView", _tests.simpleCreateAndShowTest );
+			addAction( "Create :AdView", _tests.adView_create );
+			addAction( "Load :AdView", _tests.adView_load );
+			addAction( "Destroy :AdView", _tests.adView_destroy );
+			addAction( "Get Size :AdView", _tests.adView_getSize );
+			addAction( "Show :AdView", _tests.adView_show );
+			addAction( "View Params (adsize) :AdView", _tests.adView_setViewParams_fromAdSize );
+			addAction( "View Params (align) :AdView", _tests.adView_setViewParams_align );
+			addAction( "Hide :AdView", _tests.adView_hide );
+			
+			
+			addAction( "Load Interstitial", _tests.loadInterstitial );
+			addAction( "Show Interstitial", _tests.showInterstitial );
+			
+			
+			addChild( _tests );
+			addChild( _text );
+			addChild( _container );
 		}
+		
+		
+		private function addAction( label:String, listener:Function ):void
+		{
+			var b:Button = new Button();
+			b.label = label;
+			b.addEventListener( starling.events.Event.TRIGGERED, listener );
+			_container.addChild(b);
+		}
+		
 		
 		
 		
@@ -93,55 +140,10 @@ package com.distriqt.test.adverts
 		protected function addedToStageHandler(event:Event):void
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler );
-			
 			var theme:MetalWorksMobileTheme = new MetalWorksMobileTheme();
-			
-			_text = new TextField( stage.stageWidth, stage.stageHeight, "", "_typewriter", 18, Color.WHITE );
-			_text.hAlign = HAlign.LEFT; 
-			_text.vAlign = VAlign.TOP;
-			_text.y = 40;
-			_text.touchable = false;
-			
-			var layout:VerticalLayout = new VerticalLayout();
-			layout.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_RIGHT;
-			layout.verticalAlign = VerticalLayout.VERTICAL_ALIGN_BOTTOM;
-			layout.gap = 5;
-			var container:ScrollContainer = new ScrollContainer();
-			container.layout = layout;
-			container.width = stage.stageWidth;
-			container.height = stage.stageHeight-50;
-			
-			_buttons = new Vector.<Button>();
-			
-			init();
-			
-			addAction( "Setup", _helper.setup );
-			addAction( "Dispose", _helper.dispose );
-
-			addAction( "Load Interstitial", _helper.loadInterstitial );
-			addAction( "Show Interstitial", _helper.showInterstitial );
-			
-			
-			
-			
-			addChild( _text );
-			for each (var button:Button in _buttons)
-			{
-				container.addChild(button);
-			}
-			addChild( container );
-			
+			create();
 		}
 
-		
-		private function addAction( label:String, listener:Function ):void
-		{
-			var b:Button = new Button();
-			b.label = label;
-			b.addEventListener( starling.events.Event.TRIGGERED, listener );
-			_buttons.push( b );
-		}
-		
 		
 	}
 }
