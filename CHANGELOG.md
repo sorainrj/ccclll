@@ -1,5 +1,10 @@
 
 
+###### 2018.04.20 [v5.0.085]
+
+Updated build and corrected isSupported check (resolves #58, #60)
+
+
 ###### 2018.03.10 [v5.0.083]
 
 Major update including complete refactor for future development
