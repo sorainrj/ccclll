@@ -111,9 +111,12 @@ package com.distriqt.test.adverts
 			addAction( "Hide :AdView", _tests.adView_hide );
 			
 			
-			addAction( "Load Interstitial", _tests.loadInterstitial );
-			addAction( "Show Interstitial", _tests.showInterstitial );
+			addAction( "Load :Interstitial", _tests.loadInterstitial );
+			addAction( "Show :Interstitial", _tests.showInterstitial );
 			
+			
+			addAction( "Load :Rewarded Video", _tests.rewardedVideo_load );
+			addAction( "Show :Rewarded Video", _tests.rewardedVideo_show );
 			
 			addChild( _tests );
 			addChild( _text );

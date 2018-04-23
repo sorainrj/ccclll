@@ -1,5 +1,10 @@
 
 
+###### 2018.04.23 [v5.1.102]
+
+Added Rewarded Video Ads (resolves #42)
+
+
 ###### 2018.04.20 [v5.0.085]
 
 Updated build and corrected isSupported check (resolves #58, #60)

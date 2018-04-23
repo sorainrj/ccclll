@@ -9,7 +9,7 @@
 	<initialWindow>
 		<content>[This value will be overwritten by Flash Builder in the output app.xml]</content>
 		<visible>true</visible>
-		<fullScreen>true</fullScreen>
+		<fullScreen>false</fullScreen>
 		<autoOrients>true</autoOrients>
 		<renderMode>direct</renderMode>
 		<depthAndStencil>false</depthAndStencil>
@@ -44,7 +44,7 @@
 		</Entitlements>
 	</iPhone>
 	
-	
+
 	<android>
 		<manifestAdditions><![CDATA[
 			<manifest android:installLocation="auto">
@@ -69,12 +69,13 @@
 		]]></manifestAdditions>
 	</android>
 	
-	
+
 	<extensions>
 		<extensionID>com.distriqt.Adverts</extensionID>
 		<extensionID>com.distriqt.Core</extensionID>
-		<extensionID>com.distriqt.playservices.Ads</extensionID>
 		<extensionID>com.distriqt.playservices.Base</extensionID>
+		<extensionID>com.distriqt.playservices.Ads</extensionID>
 	</extensions>
+
 	
 </application>

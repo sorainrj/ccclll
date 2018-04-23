@@ -26,6 +26,8 @@ package com.distriqt.test.adverts
 	import com.distriqt.extension.adverts.events.AdViewEvent;
 	import com.distriqt.extension.adverts.events.AdvertisingIdEvent;
 	import com.distriqt.extension.adverts.events.InterstitialAdEvent;
+	import com.distriqt.extension.adverts.events.RewardedVideoAdEvent;
+	import com.distriqt.extension.adverts.rewarded.RewardedVideoAd;
 	
 	import starling.core.Starling;
 	import starling.display.Quad;
@@ -74,11 +76,13 @@ package com.distriqt.test.adverts
 					{
 						Config.admob_adUnitId_banner = Config.admob_android_adUnitId_banner;
 						Config.admob_adUnitId_interstitial = Config.admob_android_adUnitId_interstitial;
+						Config.admob_adUnitId_rewardedVideoAd = Config.admob_android_adUnitId_rewardedVideo;
 					}
 					else
 					{
 						Config.admob_adUnitId_banner = Config.admob_ios_adUnitId_banner;
 						Config.admob_adUnitId_interstitial = Config.admob_ios_adUnitId_interstitial;
+						Config.admob_adUnitId_rewardedVideoAd = Config.admob_ios_adUnitId_rewardedVideo;
 					}
 					
 					
@@ -228,6 +232,89 @@ package com.distriqt.test.adverts
 				_interstitial = null;
 			}
 		}
+		
+		
+		
+		
+		//
+		//
+		//	REWARDED VIDEO AD
+		//
+		//
+		
+		private var _rewardedVideoAd : RewardedVideoAd;
+		
+		
+		public function rewardedVideo_load():void
+		{
+			log( "rewardedVideo_load" );
+			if (Adverts.service.rewardedVideoAds.isSupported)
+			{
+				_rewardedVideoAd = Adverts.service.rewardedVideoAds.createRewardedVideoAd();
+				
+				if (_rewardedVideoAd != null)
+				{
+					_rewardedVideoAd.addEventListener( RewardedVideoAdEvent.LOADED, rewarded_eventHandler );
+					_rewardedVideoAd.addEventListener( RewardedVideoAdEvent.ERROR, rewarded_errorHandler );
+					
+					_rewardedVideoAd.addEventListener( RewardedVideoAdEvent.OPENED, rewarded_eventHandler );
+					_rewardedVideoAd.addEventListener( RewardedVideoAdEvent.CLOSED, rewarded_eventHandler );
+					_rewardedVideoAd.addEventListener( RewardedVideoAdEvent.LEFT_APPLICATION, rewarded_eventHandler );
+					_rewardedVideoAd.addEventListener( RewardedVideoAdEvent.VIDEO_STARTED, rewarded_eventHandler );
+					
+					_rewardedVideoAd.addEventListener( RewardedVideoAdEvent.REWARD, rewarded_rewardHandler );
+					
+					_rewardedVideoAd.load(
+							Config.admob_adUnitId_rewardedVideoAd,
+							new AdRequestBuilder().build()
+					);
+				}
+				else
+				{
+					log( "ERROR creating rewarded video ad" );
+				}
+			}
+			else
+			{
+				log( "Rewarded Video Ads NOT SUPPORTED" );
+			}
+		}
+		
+		
+		public function rewardedVideo_show():void
+		{
+			log( "rewardedVideo_show" );
+			if (_rewardedVideoAd != null)
+			{
+				if (_rewardedVideoAd.isLoaded())
+				{
+					_rewardedVideoAd.show();
+				}
+				else
+				{
+					log( "Not loaded" );
+				}
+			}
+		}
+		
+		
+		private function rewarded_eventHandler( event:RewardedVideoAdEvent ):void
+		{
+			log( event.type );
+		}
+		
+		private function rewarded_errorHandler( event:RewardedVideoAdEvent ):void
+		{
+			log( event.type +"::"+event.errorCode );
+		}
+		
+		private function rewarded_rewardHandler( event:RewardedVideoAdEvent ):void
+		{
+			log( event.type + "::" +event.rewardAmount + "["+event.rewardType+"]" );
+		}
+		
+		
+		
 		
 		
 		

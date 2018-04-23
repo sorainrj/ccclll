@@ -5,7 +5,7 @@ scenes in your application, such as after a game level.
 
 Interstitials are represented by the `InterstitialAd` class. You create an instance of this class using the extension and then use this instance to set properties, load and display the interstitial.
 
-All of the interstitial functionality is provided through the `Adverts.service.interstitial` singleton.
+All of the interstitial functionality is provided through the `Adverts.service.interstitials` singleton.
 
 >
 > You must initialise an advert platform before calling any of the interstitial functionality. 
