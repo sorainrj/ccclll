@@ -64,6 +64,8 @@ The simplest example is to just use a generic request:
 rewardedVideoAd.load( "REWARDED_AD_UNIT_ID", new AdRequestBuilder().build() );
 ```
 
+See ![](Targeting|u.Targeting) for more on the `AdRequestBuilder` targetting options.
+
 You can listen for events that will inform you on when an advert is available or if there were any errors in loading the advert.
 
 - `RewardedVideoAdEvent.LOADED`: dispatched when an ad has finished loading;

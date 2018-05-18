@@ -48,6 +48,8 @@ var request:AdRequest = new AdRequestBuilder()
 adView.load( request );
 ```
 
+See ![](Targeting|u.Targeting) for more on the `AdRequestBuilder` targetting options.
+
 
 You can listen for events that will inform you on when an advert is available or if there were any errors in loading the advert.
 There are two events of interest here:

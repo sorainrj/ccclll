@@ -64,6 +64,8 @@ The simplest example is to just use a generic request:
 interstitial.load( new AdRequestBuilder().build() );
 ```
 
+See ![](Targeting|u.Targeting) for more on the `AdRequestBuilder` targetting options.
+
 You can listen for events that will inform you on when an advert is available or if there were any errors in loading the advert.
 There are two events of interest here:
 

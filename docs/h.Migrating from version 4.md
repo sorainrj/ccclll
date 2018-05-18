@@ -22,7 +22,7 @@ Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB, AD_UNIT_ID );
 becomes:
 
 ```as3
-Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB
+Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB );
 
 var adView:AdView = Adverts.service.createAdView();
 adView.setAdSize( AdSize.SMART_BANNER );

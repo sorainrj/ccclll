@@ -366,10 +366,16 @@ package com.distriqt.test.adverts
 			log( "adView_load" );
 			if (_adView != null)
 			{
-				var builder:AdRequestBuilder = new AdRequestBuilder();
-	
+				var builder:AdRequestBuilder = new AdRequestBuilder()
+						.setIsDesignedForFamilies( true )
+						.tagForChildDirectedTreatment( true )
+						.addKeyword( "distriqt" )
+						.maxAdContentRating( "G" )
+						.nonPersonalisedAds( true );
+				
 				if (Config.testDeviceId != null && Config.testDeviceId.length > 0)
 					builder.addTestDevice( Config.testDeviceId );
+				
 				
 				_adView.load( builder.build() );
 			}

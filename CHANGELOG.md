@@ -1,5 +1,15 @@
 
 
+###### 2018.05.18 [v5.2.108]
+
+iOS: Updated SDK to v7.31.0 (#57)
+Added targeting options (resolves #61)
+  - child treatment (COPPA)
+  - non-personalised ads (GDPR)
+  - ad content 
+  - keywords
+
+
 ###### 2018.04.23 [v5.1.102]
 
 Added Rewarded Video Ads (resolves #42)
