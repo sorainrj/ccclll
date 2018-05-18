@@ -1,5 +1,10 @@
 
 
+###### 2018.05.18 [v5.2.109]
+
+Updated documentation
+
+
 ###### 2018.05.18 [v5.2.108]
 
 iOS: Updated SDK to v7.31.0 (#57)
