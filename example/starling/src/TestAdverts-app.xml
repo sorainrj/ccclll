@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<application xmlns="http://ns.adobe.com/air/application/28.0">
+<application xmlns="http://ns.adobe.com/air/application/30.0">
 	<id>com.distriqt.test</id>
 	<filename>TestAdverts</filename>
 	<name>TestAdverts</name>
@@ -67,7 +67,12 @@
 				<application>
 				
 					<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
-						
+
+                    <activity
+                        android:name="com.google.android.gms.common.api.GoogleApiActivity"
+                        android:exported="false"
+                        android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
 					<activity 
 						android:name="com.google.android.gms.ads.AdActivity"
 						android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" 
@@ -86,9 +91,6 @@
 		<extensionID>com.distriqt.Core</extensionID>
 		<extensionID>com.distriqt.playservices.Ads</extensionID>
 		<extensionID>com.distriqt.playservices.Base</extensionID>
-		<extensionID>com.distriqt.androidsupport.V4</extensionID>
-		<extensionID>com.distriqt.androidsupport.AppCompatV7</extensionID>
-		<extensionID>com.distriqt.androidsupport.CustomTabs</extensionID>
 	</extensions>
 	
 </application>

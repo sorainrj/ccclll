@@ -96,6 +96,11 @@ The CameraUI ANE requires a few additions to the manifest to be able to start ce
 
 		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
 		
+		<activity
+			android:name="com.google.android.gms.common.api.GoogleApiActivity"
+			android:exported="false"
+			android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
 		<activity 
 			android:name="com.google.android.gms.ads.AdActivity"
 			android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" 

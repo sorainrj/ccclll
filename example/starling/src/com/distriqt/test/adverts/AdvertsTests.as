@@ -23,11 +23,17 @@ package com.distriqt.test.adverts
 	import com.distriqt.extension.adverts.InterstitialAd;
 	import com.distriqt.extension.adverts.builders.AdViewParamsBuilder;
 	import com.distriqt.extension.adverts.builders.AdRequestBuilder;
+	import com.distriqt.extension.adverts.consent.Consent;
+	import com.distriqt.extension.adverts.consent.ConsentOptions;
+	import com.distriqt.extension.adverts.consent.DebugGeography;
 	import com.distriqt.extension.adverts.events.AdViewEvent;
 	import com.distriqt.extension.adverts.events.AdvertisingIdEvent;
+	import com.distriqt.extension.adverts.events.ConsentEvent;
 	import com.distriqt.extension.adverts.events.InterstitialAdEvent;
 	import com.distriqt.extension.adverts.events.RewardedVideoAdEvent;
 	import com.distriqt.extension.adverts.rewarded.RewardedVideoAd;
+	
+	import flash.events.ErrorEvent;
 	
 	import starling.core.Starling;
 	import starling.display.Quad;
@@ -85,6 +91,7 @@ package com.distriqt.test.adverts
 						Config.admob_adUnitId_rewardedVideoAd = Config.admob_ios_adUnitId_rewardedVideo;
 					}
 					
+					Adverts.service.addEventListener( ErrorEvent.ERROR, errorHandler );
 					
 					Adverts.service.initialisePlatform(
 							AdvertPlatform.PLATFORM_ADMOB,
@@ -98,6 +105,11 @@ package com.distriqt.test.adverts
 			}
 		}
 		
+		private function errorHandler( event:ErrorEvent ):void
+		{
+			log( "error::" + event.text );
+		}
+		
 		
 		public function destroy():void
 		{
@@ -107,6 +119,7 @@ package com.distriqt.test.adverts
 				disposeAdView();
 				disposeInterstitial();
 				
+				Adverts.service.removeEventListener( ErrorEvent.ERROR, errorHandler );
 				Adverts.service.dispose();
 			}
 			catch (e:Error)
@@ -525,6 +538,84 @@ package com.distriqt.test.adverts
 				_adView = null;
 			}
 		}
+		
+		
+		
+		
+		//
+		//	CONSENT
+		//
+		
+		public function setConsentDebug():void
+		{
+			log( "setConsentDebug()" );
+//			Adverts.service.consent.addTestDevice( "44DB3CFE748FAAEA1B9816252214941E" );
+			Adverts.service.consent.addTestDevice( "F1C0AFEFF151A60B62C089B377FFC555" );
+			Adverts.service.consent.setDebugGeography( DebugGeography.DEBUG_GEOGRAPHY_EEA );
+		}
+		
+		
+		public function getConsentStatus():void
+		{
+			log( "getConsentStatus()" );
+			
+			Adverts.service.consent.addEventListener( ConsentEvent.STATUS_UPDATED, consent_statusUpdatedHandler );
+			Adverts.service.consent.addEventListener( ConsentEvent.STATUS_ERROR, consent_statusErrorHandler );
+			
+			Adverts.service.consent.getConsentStatus( Config.admob_publisher_id );
+		}
+		
+		private function consent_statusUpdatedHandler( event:ConsentEvent ):void
+		{
+			log( "consent_statusUpdatedHandler(): " + event.status
+					+ " inEea:" + event.inEeaOrUnknown );
+			Adverts.service.consent.removeEventListener( ConsentEvent.STATUS_UPDATED, consent_statusUpdatedHandler );
+			Adverts.service.consent.removeEventListener( ConsentEvent.STATUS_ERROR, consent_statusErrorHandler );
+		}
+		
+		private function consent_statusErrorHandler( event:ConsentEvent ):void
+		{
+			log( "consent_statusErrorHandler(): " + event.error );
+			Adverts.service.consent.removeEventListener( ConsentEvent.STATUS_UPDATED, consent_statusUpdatedHandler );
+			Adverts.service.consent.removeEventListener( ConsentEvent.STATUS_ERROR, consent_statusErrorHandler );
+		}
+		
+		
+		
+		
+		public function askForConsent():void
+		{
+			log( "askForConsent()" );
+			var options:ConsentOptions = new ConsentOptions( "https://airnativeextensions.com/privacy" )
+					.withPersonalizedAdsOption()
+					.withNonPersonalizedAdsOption();
+//					.withAdFreeOption();
+			
+			Adverts.service.consent.addEventListener( ConsentEvent.FORM_CLOSED, consent_formClosedHandler );
+			Adverts.service.consent.addEventListener( ConsentEvent.FORM_ERROR, consent_formErrorHandler );
+			
+			Adverts.service.consent.askForConsent( options );
+		}
+		
+		private function consent_formClosedHandler( event:ConsentEvent ):void
+		{
+			log( "consent_formClosedHandler(): " + event.status
+					+ " inEea:" + event.inEeaOrUnknown
+					+ " adFree:" + event.userPrefersAdFree );
+			
+			Adverts.service.consent.removeEventListener( ConsentEvent.FORM_CLOSED, consent_formClosedHandler );
+			Adverts.service.consent.removeEventListener( ConsentEvent.FORM_ERROR, consent_formErrorHandler );
+		}
+		
+		private function consent_formErrorHandler( event:ConsentEvent ):void
+		{
+			log( "consent_formErrorHandler(): " + event.error );
+			
+			Adverts.service.consent.removeEventListener( ConsentEvent.FORM_CLOSED, consent_formClosedHandler );
+			Adverts.service.consent.removeEventListener( ConsentEvent.FORM_ERROR, consent_formErrorHandler );
+		}
+		
+		
 		
 	}
 }

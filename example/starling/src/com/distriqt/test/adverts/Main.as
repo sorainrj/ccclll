@@ -118,6 +118,12 @@ package com.distriqt.test.adverts
 			addAction( "Load :Rewarded Video", _tests.rewardedVideo_load );
 			addAction( "Show :Rewarded Video", _tests.rewardedVideo_show );
 			
+			
+			addAction( "Set Debug :Consent", _tests.setConsentDebug );
+			addAction( "Get Consent Status :Consent", _tests.getConsentStatus );
+			addAction( "Ask For Consent :Consent", _tests.askForConsent );
+			
+			
 			addChild( _tests );
 			addChild( _text );
 			addChild( _container );

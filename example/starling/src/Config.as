@@ -18,6 +18,8 @@ package
 	{
 		public static var distriqtApplicationKey	: String = "";
 		
+		// https://support.google.com/admob/answer/2784578
+		public static var admob_publisher_id : String = "";
 		
 		public static var admob_adUnitId_banner : String;
 		public static var admob_adUnitId_interstitial : String;
