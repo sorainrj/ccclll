@@ -1,5 +1,12 @@
 
 
+###### 2018.07.06 [v5.3.147]
+
+```
+Removed available flags from Google iOS Consent SDK for windows packaging (resolves #71)
+```
+
+
 ###### 2018.06.25 [v5.3.131]
 
 ```

@@ -81,7 +81,7 @@ The following should be added to your `extensions` node in your application desc
 
 ## Android Manifest Additions
 
-The CameraUI ANE requires a few additions to the manifest to be able to start certain activities and get access to the users media. You should add the listing below to your manifest, replacing `APPLICATION_ID` with your AIR application id on Android (eg `air.com.distriqt.test`) Note that it may be prefixed by `air.`.
+The Adverts ANE requires a few additions to the manifest to be able to start certain activities. You should add the listing below to your manifest, replacing `APPLICATION_ID` with your AIR application id on Android (eg `air.com.distriqt.test`) Note that it may be prefixed by `air.`.
 
 ```xml
 <manifest android:installLocation="auto">
