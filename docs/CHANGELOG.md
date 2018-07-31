@@ -1,5 +1,12 @@
 
 
+###### 2018.07.31 [v5.3.158]
+
+```
+Android: Added handling of crashes in some edge load cases (#76)
+```
+
+
 ###### 2018.07.14 [v5.3.157]
 
 ```
