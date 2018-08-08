@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<application xmlns="http://ns.adobe.com/air/application/30.0">
+    <id>com.distriqt.test.debug</id>
+    <filename>TestAdverts</filename>
+    <name>TestAdverts</name>
+    <versionNumber>0.0.1</versionNumber>
+    <initialWindow>
+        <content>TestAdverts.swf</content>
+        <visible>true</visible>
+        <fullScreen>true</fullScreen>
+        <autoOrients>true</autoOrients>
+        <renderMode>direct</renderMode>
+        <depthAndStencil>false</depthAndStencil>
+    </initialWindow>
+    <icon></icon>
+    <iPhone>
+        <InfoAdditions><![CDATA[
+			<key>UIDeviceFamily</key>
+			<array>
+				<string>1</string>
+			</array>
+		]]></InfoAdditions>
+        <requestedDisplayResolution>high</requestedDisplayResolution>
+        <Entitlements><![CDATA[
+			]]></Entitlements>
+    </iPhone>
+    <android>
+        <manifestAdditions><![CDATA[
+			<manifest android:installLocation="auto">
+				<uses-permission android:name="android.permission.INTERNET"/>
+				<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+				
+				<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+				
+				<application>
+				
+					<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+						
+					<activity 
+						android:name="com.google.android.gms.ads.AdActivity"
+						android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" 
+						android:theme="@android:style/Theme.Translucent" />
+						
+					
+				</application>
+				
+			</manifest>
+		]]></manifestAdditions>
+    </android>
+    <extensions>
+        <extensionID>com.distriqt.Core</extensionID>
+        <extensionID>com.distriqt.playservices.Base</extensionID>
+        <extensionID>com.distriqt.playservices.Ads</extensionID>
+        <extensionID>com.distriqt.Adverts</extensionID>
+    </extensions>
+</application>
