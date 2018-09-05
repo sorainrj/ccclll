@@ -40,10 +40,23 @@ else
 With AdMob the account id is the app id from the console. The app id is of a similar form to ad unit ids 
 so don't get confused between them.
 
-You only have to provide an account id on iOS. On Android this value can be left blank.
-So you can call this as below:
+**You should provide this account id on both iOS and Android now.** (Previously you only had to provide an account id on iOS). 
+
+Call this as below:
 
 ```as3
-Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB, IOS_APP_ID );
+Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB, APP_ID );
 ```
+
+You may have different app id's for iOS and Android:
+
+```as3
+if (Adverts.service.implementation == "Android")
+{
+	Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB, ANDROID_APP_ID );
+}
+else 
+{
+	Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB, IOS_APP_ID );
+}
 

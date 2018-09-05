@@ -1,5 +1,12 @@
 
 
+###### 2018.09.05 [v5.3.161]
+
+```
+Documentation update + small Android update
+```
+
+
 ###### 2018.08.08 [v5.3.159]
 
 ```
