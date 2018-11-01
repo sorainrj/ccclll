@@ -145,3 +145,18 @@ impacted by ATS on iOS 9 devices, while `NSAllowsArbitraryLoadsForMedia` and
 `NSAllowsAribtraryLoadsInWebContent` are required to make sure your ads are 
 not impacted by ATS on iOS 10 devices.
 
+
+## Checking for Support
+
+You can use the `isSupported` flag to determine if this extension is supported on the current platform and device.
+
+This allows you to react to whether the functionality is available on the device and provide an alternative solution if not.
+
+
+```as3
+if (Adverts.isSupported)
+{
+	// Functionality here
+}
+```
+

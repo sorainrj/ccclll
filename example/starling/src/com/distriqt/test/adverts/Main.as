@@ -49,7 +49,7 @@ package com.distriqt.test.adverts
 		
 		//	UI
 		private var _text		: TextField;
-		private var _container	:ScrollContainer ;
+		private var _container	: ScrollContainer ;
 
 		
 		
@@ -96,6 +96,7 @@ package com.distriqt.test.adverts
 			
 			_tests = new AdvertsTests( this );
 			
+			addAction( "Check Play Services", _tests.checkPlayServices );
 			addAction( "Setup", _tests.setup );
 			addAction( "Dispose", _tests.destroy );
 			addAction( "Get Advertising Id", _tests.getAdvertisingId );

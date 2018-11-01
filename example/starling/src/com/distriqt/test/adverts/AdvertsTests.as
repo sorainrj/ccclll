@@ -32,6 +32,8 @@ package com.distriqt.test.adverts
 	import com.distriqt.extension.adverts.events.InterstitialAdEvent;
 	import com.distriqt.extension.adverts.events.RewardedVideoAdEvent;
 	import com.distriqt.extension.adverts.rewarded.RewardedVideoAd;
+	import com.distriqt.extension.playservices.base.ConnectionResult;
+	import com.distriqt.extension.playservices.base.GoogleApiAvailability;
 	
 	import flash.events.ErrorEvent;
 	
@@ -64,6 +66,28 @@ package com.distriqt.test.adverts
 		{
 			super();
 			_l = logger;
+		}
+		
+		
+		
+		public function checkPlayServices():void
+		{
+			var result:int = GoogleApiAvailability.instance.isGooglePlayServicesAvailable();
+			if (result != ConnectionResult.SUCCESS)
+			{
+				if (GoogleApiAvailability.instance.isUserRecoverableError( result ))
+				{
+					GoogleApiAvailability.instance.showErrorDialog( result );
+				}
+				else
+				{
+					log( "Google Play Services aren't available on this device" );
+				}
+			}
+			else
+			{
+				log( "Google Play Services are Available" );
+			}
 		}
 		
 		
@@ -363,6 +387,11 @@ package com.distriqt.test.adverts
 			
 			_adView.setAdSize( AdSize.SMART_BANNER );
 			_adView.setAdUnitId( Config.admob_adUnitId_banner );
+			_adView.setViewParams( new AdViewParamsBuilder()
+					.setHorizontalAlign( AdViewParams.ALIGN_CENTER )
+					.setVerticalAlign( AdViewParams.ALIGN_BOTTOM )
+					.build()
+			);
 			
 			_adView.addEventListener( AdViewEvent.LOADED, adView_loadedHandler );
 			_adView.addEventListener( AdViewEvent.ERROR, adView_errorHandler );
@@ -384,7 +413,9 @@ package com.distriqt.test.adverts
 						.tagForChildDirectedTreatment( true )
 						.addKeyword( "distriqt" )
 						.maxAdContentRating( "G" )
-						.nonPersonalisedAds( true );
+						.nonPersonalisedAds( true )
+						.tagForUnderAgeOfConsent( true )
+				;
 				
 				if (Config.testDeviceId != null && Config.testDeviceId.length > 0)
 					builder.addTestDevice( Config.testDeviceId );

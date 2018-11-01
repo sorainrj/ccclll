@@ -1,5 +1,13 @@
 
 
+###### 2018.11.01 [v5.3.171]
+
+```
+Added tagForUnderAgeOfConsent to AdRequest (resolves #90)
+iOS: Resolved landscape smart banner full width issue (resolves #74) 
+```
+
+
 ###### 2018.09.05 [v5.3.161]
 
 ```

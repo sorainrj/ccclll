@@ -23,6 +23,25 @@ var request:AdRequest = new AdRequestBuilder()
 ```
 
 
+## Users under the age of consent
+
+You can mark your ad requests to receive treatment for users in the European Economic Area (EEA) under the age of consent. This feature is designed to help facilitate compliance with the [General Data Protection Regulation (GDPR)](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679). Note that you may have other legal obligations under GDPR. Please review the European Union’s guidance and consult with your own legal counsel. Please remember that Google's tools are designed to facilitate compliance and do not relieve any particular publisher of its obligations under the law. [Learn more about how the GDPR affects publishers](https://support.google.com/admob/answer/7666366).
+
+When using this feature, a Tag For Users under the Age of Consent in Europe (TFUA) parameter will be included in the ad request. This parameter disables personalized advertising, including remarketing, for that specific ad request. It also disables requests to third-party ad vendors, such as ad measurement pixels and third-party ad servers.
+
+
+The following example indicates that you want TFUA included in your ad request:
+
+```as3
+var request:AdRequest = new AdRequestBuilder()
+        .tagForUnderAgeOfConsent(true)
+        .build();
+```
+
+Not setting this indicates that you don't want the ad request to be handled in a manner suitable for users under the age of consent.
+
+
+
 ## Ad content filtering
 
 Apps can set a maximum ad content rating for their ad requests using the `maxAdContentRating` function. AdMob ads returned for these requests have a content rating at or below that level. The possible values for this network extra are based on digital content label classifications, and should be one of the following strings:
