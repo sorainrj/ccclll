@@ -1,5 +1,13 @@
 
 
+###### 2018.11.27 [v5.4.173]
+
+```
+Updated to Google Play Services v16.0.5 (#105, #104, #72, #57)
+Removed application keys 
+```
+
+
 ###### 2018.11.01 [v5.3.171]
 
 ```
