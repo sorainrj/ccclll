@@ -105,9 +105,11 @@ Adverts.service.consent.askForConsent( options );;
 Once you have called `askForConsent` you will receive one of two events:
 
 - `ConsentEvent.FORM_CLOSED`: Dispatched when the user has selected their consent status and the form has been closed
+  - `event.status`:  Is a string containing one of the values defined in the ConsentStatus class.
 - `ConsentEvent.FORM_ERROR`: Dispatched when there was an error loading or displaying the form
+  - `event.error`: Will be a description of the error that occurred.
 
-
+See [`ConsentEvent`](http://distriqt.github.io/ANE-Adverts/asdocs/com/distriqt/extension/adverts/events/ConsentEvent.html) for more information on the fields.
 
 ```as3
 var options:ConsentOptions = new ConsentOptions( "https://www.your.com/privacyurl" )
