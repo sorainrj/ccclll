@@ -8,6 +8,7 @@
 It can take an hour or two for a new ad unit to become available. Make sure you have waited a decent amount of time before testing your ad unit ids.
 
 
+
 ### Error Code 0
 
 Error code 0 (`ERROR_CODE_INTERNAL_ERROR`) can occur for many reasons. It is an Internal Error that may indicate that something unexpected has happened, such as an error from the SDK, or an invalid response from the server.
@@ -26,5 +27,15 @@ To confirm this you can try changing your application id and serving the same ad
 
 
 
+
+
+
+### Error Code 1
+
+Error code 1 (`ERROR_CODE_INVALID_REQUEST `) can occur in certain situations. 
+
+The most common situation is that your AdUnit ID is incorrect. Check that it was correctly transferred from the console and no irregular characters or spaces have been included.
+
+This error can also occur if the user of this device has enabled ad limiting. This can affect the requests to AdMob and result in this error.
 
 

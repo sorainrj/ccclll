@@ -226,6 +226,7 @@ package com.distriqt.test.adverts
 		private function interstitial_loadedHandler( event:InterstitialAdEvent ):void
 		{
 			log( "interstitial loaded and ready to display" );
+			showInterstitial();
 		}
 		
 		
