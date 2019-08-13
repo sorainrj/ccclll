@@ -76,6 +76,7 @@ The following should be added to your `extensions` node in your application desc
 <extensions>
 	<extensionID>com.distriqt.Adverts</extensionID>
 	<extensionID>com.distriqt.Core</extensionID>
+    <extensionID>com.distriqt.androidsupport.V4</extensionID>
 	<extensionID>com.distriqt.playservices.Ads</extensionID>
 	<extensionID>com.distriqt.playservices.Base</extensionID>
 </extensions>

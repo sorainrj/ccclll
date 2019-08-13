@@ -91,8 +91,6 @@ package
 		{
 			try
 			{
-				Adverts.init( APP_KEY );
-				
 				message( "Adverts Supported:       " + Adverts.isSupported );
 				message( "Adverts Version:         " + Adverts.service.version );
 				

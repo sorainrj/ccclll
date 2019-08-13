@@ -96,7 +96,6 @@ package com.distriqt.test.adverts
 			log( "setup" );
 			try
 			{
-				Adverts.init( Config.distriqtApplicationKey );
 				if (Adverts.isSupported)
 				{
 					log( "Adverts.isSupported = " + Adverts.isSupported );
@@ -410,12 +409,12 @@ package com.distriqt.test.adverts
 			if (_adView != null)
 			{
 				var builder:AdRequestBuilder = new AdRequestBuilder()
-						.setIsDesignedForFamilies( true )
-						.tagForChildDirectedTreatment( true )
-						.addKeyword( "distriqt" )
-						.maxAdContentRating( "G" )
-						.nonPersonalisedAds( true )
-						.tagForUnderAgeOfConsent( true )
+//						.setIsDesignedForFamilies( true )
+//						.tagForChildDirectedTreatment( true )
+//						.addKeyword( "distriqt" )
+//						.maxAdContentRating( "G" )
+//						.nonPersonalisedAds( true )
+//						.tagForUnderAgeOfConsent( true )
 				;
 				
 				if (Config.testDeviceId != null && Config.testDeviceId.length > 0)
