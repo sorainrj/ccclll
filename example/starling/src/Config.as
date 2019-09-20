@@ -45,8 +45,8 @@ package
 		public static var admob_ios_adUnitId_nativeExpress_lg : String = "";
 		
 		
-//		public static var testDeviceId : String = "";
-		public static var testDeviceId : String = "a924a6ab51e8b35d7433ad0315c9889b";
+		public static var testDeviceId : String = "345c51d7caf2d4877df5626c6f0c5685";
+//		public static var testDeviceId : String = "a924a6ab51e8b35d7433ad0315c9889b";
 //		public static var testDeviceId : String = "F1C0AFEFF151A60B62C089B377FFC555";
 	
 	}

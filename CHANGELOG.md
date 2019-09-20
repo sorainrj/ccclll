@@ -1,5 +1,12 @@
 
 
+###### 2019.09.20 [v6.0.008]
+
+```
+iOS: Removed dependencies on frameworks that causes usage description errors (resolves #143)
+```
+
+
 ###### 2019.08.13 [v6.0.002]
 
 ```
