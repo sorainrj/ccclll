@@ -59,4 +59,4 @@ else
 {
 	Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB, IOS_APP_ID );
 }
-
+```

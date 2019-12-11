@@ -85,7 +85,9 @@ The following should be added to your `extensions` node in your application desc
 
 
 
-## Android Manifest Additions
+## Android 
+
+### Manifest Additions
 
 The Adverts ANE requires a few additions to the manifest to be able to start certain activities. You should add the listing below to your manifest, replacing `APPLICATION_ID` with your AIR application id on Android (eg `air.com.distriqt.test`) Note that it may be prefixed by `air.`.
 
@@ -118,7 +120,18 @@ The Adverts ANE requires a few additions to the manifest to be able to start cer
 ```
 
 
-## iOS Additions
+## iOS 
+
+### Info Additions
+
+Add a `GADApplicationIdentifier` key with a string value of your AdMob app ID into the info additions node. You can [find your App ID](https://support.google.com/admob/answer/7356431) in the AdMob UI.
+
+
+```xml
+<key>GADApplicationIdentifier</key>
+<string>ca-app-pub-AAAAAAAAAAAAAAAA~XXXXXXXXXX</string>
+```
+
 
 App Transport Security (ATS) is a privacy feature introduced in iOS 9. It's enabled 
 by default for new applications and enforces secure connections.
@@ -150,6 +163,42 @@ The `NSAllowsArbitraryLoads` exception is required to make sure your ads are not
 impacted by ATS on iOS 9 devices, while `NSAllowsArbitraryLoadsForMedia` and 
 `NSAllowsAribtraryLoadsInWebContent` are required to make sure your ads are 
 not impacted by ATS on iOS 10 devices.
+
+
+Example:
+
+
+```xml
+<iPhone>
+	<InfoAdditions><![CDATA[
+		<key>UIDeviceFamily</key>
+		<array>
+			<string>1</string>
+			<string>2</string>
+		</array>
+
+		<key>NSAppTransportSecurity</key>
+		<dict>
+			<key>NSAllowsArbitraryLoads</key>
+			<true/>
+			<key>NSAllowsArbitraryLoadsForMedia</key>
+			<true/>
+			<key>NSAllowsArbitraryLoadsInWebContent</key>
+			<true/>
+		</dict>
+
+		<key>GADApplicationIdentifier</key>
+		<string>ca-app-pub-AAAAAAAAAAAAAAAA~XXXXXXXXXX</string>
+	)></InfoAdditions>
+	<requestedDisplayResolution>high</requestedDisplayResolution>
+	<Entitlements>
+		<![CDATA[
+		)>
+	</Entitlements>
+</iPhone>
+```
+
+
 
 
 ## Checking for Support

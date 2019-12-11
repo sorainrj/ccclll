@@ -3,6 +3,11 @@
 ## Common Issues
 
 
+### iOS Crash on Launch
+
+If you encounter a crash on launch, ensure you have added the ![](info additions|i.Add the Extension#info-additions) correctly. The AdMob SDK will terminate your application if you haven't provided your application identifier in the info additions.
+
+
 ### Waiting
 
 It can take an hour or two for a new ad unit to become available. Make sure you have waited a decent amount of time before testing your ad unit ids.

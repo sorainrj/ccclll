@@ -1,5 +1,15 @@
 
 
+###### 2019.12.11 [v6.1.015]
+
+```
+Updated Admob SDK
+ - iOS v7.45.0 (pre Firebase sqlite changes)
+ - Android v17.1.2
+Added Firebase v6.2.0 compatibility
+```
+
+
 ###### 2019.09.20 [v6.0.008]
 
 ```
