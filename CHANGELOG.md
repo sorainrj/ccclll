@@ -1,5 +1,15 @@
 
 
+###### 2020.03.23 [v7.0.031]
+
+```
+Android X migration (resolves #161)
+Updated Admob SDK
+ - Android v18.3.0
+ - iOS v7.45.0 (pre Firebase sqlite changes)
+```
+
+
 ###### 2019.12.11 [v6.1.015]
 
 ```

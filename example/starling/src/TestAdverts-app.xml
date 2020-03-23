@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<application xmlns="http://ns.adobe.com/air/application/32.0">
+<application xmlns="http://ns.adobe.com/air/application/33.1">
 	<id>com.distriqt.test</id>
 	<filename>TestAdverts</filename>
 	<name>TestAdverts</name>
@@ -87,13 +87,20 @@
 			</manifest>
 		]]></manifestAdditions>
 	</android>
-	
-	
-	<extensions>
-		<extensionID>com.distriqt.Adverts</extensionID>
-		<extensionID>com.distriqt.Core</extensionID>
-		<extensionID>com.distriqt.playservices.Ads</extensionID>
-		<extensionID>com.distriqt.playservices.Base</extensionID>
-	</extensions>
+
+
+    <extensions>
+        <extensionID>com.distriqt.Adverts</extensionID>
+        <extensionID>com.distriqt.Core</extensionID>
+        <extensionID>com.distriqt.playservices.Base</extensionID>
+        <extensionID>com.distriqt.playservices.Ads</extensionID>
+
+        <extensionID>androidx.appcompat</extensionID>
+        <extensionID>androidx.browser</extensionID>
+        <extensionID>androidx.core</extensionID>
+        <extensionID>androidx.vectordrawable</extensionID>
+
+        <extensionID>com.google.code.gson</extensionID>
+    </extensions>
 	
 </application>
