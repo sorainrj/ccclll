@@ -13,7 +13,9 @@ The user is warned that they will lose the reward if the ad is closed.
 ![](images/admob_rewarded_03.png)
 
 
-Rewarded Video Ads are represented by the `RewardedVideoAd` class. There is only ever one instance of this class created which you get access to through the extension and then use this instance to set properties, load and display rewarded video ads.
+Rewarded Video Ads are represented by the `RewardedVideoAd` class. 
+
+> **Starting with version 8.0 there can be multiple instances of the `RewardedVideoAd` class, meaning you can preload another ad while presenting one.**
 
 All of the rewarded video ads functionality is provided through the `Adverts.service.rewardedVideoAds` singleton.
 
@@ -42,26 +44,32 @@ This allows you to create a fallback scenario if rewarded video ads aren't suppo
 
 ## `RewardedVideoAd`
 
-To get access to the `RewardedVideoAd` instance use the `createRewardedVideoAd()` function:
+To create a `RewardedVideoAd` instance use the `createRewardedVideoAd()` function:
 
 ```as3
 var rewardedVideoAd : RewardedVideoAd = Adverts.service.rewardedVideoAds.createRewardedVideoAd();
 ```
 
-This will instanciate a single instance of the `RewardedVideoAd` class until it is destroyed at which point another would be created by this function.
+This will instanciate an instance of the `RewardedVideoAd` class. You are required to destroy this instance when you are finished with it.
 
+
+You are required to set the ad unit id by calling the `setAdUnitId` function before any loading is performed.
+
+```as3
+rewardedVideoAd.setAdUnitId( "REWARDED_AD_UNIT_ID" );
+```
 
 
 ## Loading
 
 Rewarded Video Ads should be preloaded in your application. This allows you to start the load at any time, and only display when your application is ready and when the advert has been loaded. You cannot display a rewarded video ad until it is loaded and ready.
 
-To load an advert you use the `load` function and pass it the `adUnitId` to load along with an `AdRequest` object which will specify the details of the ad request to load.
+To load an advert you use the `load` function and pass it an `AdRequest` object which will specify the details of the ad request to load.
 
 The simplest example is to just use a generic request:
 
 ```as3
-rewardedVideoAd.load( "REWARDED_AD_UNIT_ID", new AdRequestBuilder().build() );
+rewardedVideoAd.load( new AdRequestBuilder().build() );
 ```
 
 See ![](Targeting|u.Targeting) for more on the `AdRequestBuilder` targetting options.
@@ -143,32 +151,18 @@ if (rewardedVideoAd.isLoaded())
 There are several events dispatched by the rewarded video ad as the user interacts with it (in addition to the loaded and error events already mentioned):
 
 - `RewardedVideoAdEvent.OPENED`: dispatched when an ad opens an overlay that covers the screen;
-- `RewardedVideoAdEvent.VIDEO_STARTED`: dispatched when the video playback starts in the rewarded video ad;
-- `RewardedVideoAdEvent.LEFT_APPLICATION`: when a user click opens another app (such as Google Play), backgrounding the current app;
 - `RewardedVideoAdEvent.CLOSED`: dispatched when a user returns to the app, having closed the rewarded video ad;
 - `RewardedVideoAdEvent.REWARD`: See the ![](reward section|u.Rewarded Video Ads#rewards)
+- `RewardedVideoAdEvent.ERROR`: dispatched if there was an error presenting the ad
 
 
 ```as3
 rewardedVideoAd.addEventListener( RewardedVideoAdEvent.OPENED, openedHandler );
-rewardedVideoAd.addEventListener( RewardedVideoAdEvent.VIDEO_STARTED, videoStartedHandler );
-rewardedVideoAd.addEventListener( RewardedVideoAdEvent.LEFT_APPLICATION, leftApplicationHandler );
 rewardedVideoAd.addEventListener( RewardedVideoAdEvent.CLOSED, closedHandler );
 
 function openedHandler( event:RewardedVideoAdEvent ):void 
 {
     // The rewarded video ad has been opened and is now visible to the user 
-}
-
-function videoStartedHandler( event:RewardedVideoAdEvent ):void 
-{
-    // Video playback has started
-}
-
-function leftApplicationHandler( event:RewardedVideoAdEvent ):void 
-{
-    // Control has left your application, 
-	// you can deactivate any none important parts of your application
 }
 
 function closedHandler( event:RewardedVideoAdEvent ):void 
@@ -203,7 +197,7 @@ function rewardHandler( event:RewardedVideoAdEvent ):void
 Once you have displayed a rewarded video ad a new ad needs to be loaded in order to display the rewarded video ad again. This is a simple matter of starting a new ad request load:
 
 ```as3
-rewardedVideoAd.load( "REWARDED_AD_UNIT_ID", new AdRequestBuilder().build() );
+rewardedVideoAd.load( new AdRequestBuilder().build() );
 ```
 
 The `CLOSED` event is generally a good place to trigger this load so that you ensure you always have a loaded ad available to display in your application, however you can handle this process as you see fit.

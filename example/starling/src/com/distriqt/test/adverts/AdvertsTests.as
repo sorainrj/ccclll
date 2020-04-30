@@ -287,29 +287,22 @@ package com.distriqt.test.adverts
 			log( "rewardedVideo_load" );
 			if (Adverts.service.rewardedVideoAds.isSupported)
 			{
-				_rewardedVideoAd = Adverts.service.rewardedVideoAds.createRewardedVideoAd();
-				
-				if (_rewardedVideoAd != null)
+				if (_rewardedVideoAd == null)
 				{
+					_rewardedVideoAd = Adverts.service.rewardedVideoAds.createRewardedVideoAd();
+					
 					_rewardedVideoAd.addEventListener( RewardedVideoAdEvent.LOADED, rewarded_eventHandler );
 					_rewardedVideoAd.addEventListener( RewardedVideoAdEvent.ERROR, rewarded_errorHandler );
 					
 					_rewardedVideoAd.addEventListener( RewardedVideoAdEvent.OPENED, rewarded_eventHandler );
 					_rewardedVideoAd.addEventListener( RewardedVideoAdEvent.CLOSED, rewarded_eventHandler );
-					_rewardedVideoAd.addEventListener( RewardedVideoAdEvent.LEFT_APPLICATION, rewarded_eventHandler );
-					_rewardedVideoAd.addEventListener( RewardedVideoAdEvent.VIDEO_STARTED, rewarded_eventHandler );
 					
 					_rewardedVideoAd.addEventListener( RewardedVideoAdEvent.REWARD, rewarded_rewardHandler );
 					
-					_rewardedVideoAd.load(
-							Config.admob_adUnitId_rewardedVideoAd,
-							new AdRequestBuilder().build()
-					);
+					_rewardedVideoAd.setAdUnitId( Config.admob_adUnitId_rewardedVideoAd );
 				}
-				else
-				{
-					log( "ERROR creating rewarded video ad" );
-				}
+				
+				_rewardedVideoAd.load( new AdRequestBuilder().build() );
 			}
 			else
 			{
@@ -342,7 +335,7 @@ package com.distriqt.test.adverts
 		
 		private function rewarded_errorHandler( event:RewardedVideoAdEvent ):void
 		{
-			log( event.type +"::"+event.errorCode );
+			log( event.type +"::"+event.errorCode + "::"+event.errorMessage );
 		}
 		
 		private function rewarded_rewardHandler( event:RewardedVideoAdEvent ):void
@@ -364,7 +357,8 @@ package com.distriqt.test.adverts
 		public function simpleCreateAndShowTest():void
 		{
 			var adView:AdView = Adverts.service.createAdView();
-			adView.setAdSize( AdSize.SMART_BANNER );
+//			adView.setAdSize( AdSize.SMART_BANNER );
+			adView.setAdaptiveAdSize();
 			adView.setAdUnitId( Config.admob_adUnitId_banner );
 			adView.setViewParams( new AdViewParamsBuilder()
 					.setHorizontalAlign( AdViewParams.ALIGN_CENTER )
@@ -384,9 +378,9 @@ package com.distriqt.test.adverts
 		{
 			log( "adView_create" );
 			_adView = Adverts.service.createAdView();
-			
-			_adView.setAdSize( AdSize.SMART_BANNER );
 			_adView.setAdUnitId( Config.admob_adUnitId_banner );
+
+			_adView.setAdSize( AdSize.SMART_BANNER );
 			_adView.setViewParams( new AdViewParamsBuilder()
 					.setHorizontalAlign( AdViewParams.ALIGN_CENTER )
 					.setVerticalAlign( AdViewParams.ALIGN_BOTTOM )

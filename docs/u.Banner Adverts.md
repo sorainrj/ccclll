@@ -26,6 +26,43 @@ adView.setAdUnitId( "ca-app-pub-3940256099942544/6300978111" );
 You can use any of the predefined `AdSize` constants to set the size of the advert.
 
 
+### Adaptive Banners
+
+Adaptive banners are the next generation of responsive ads, maximizing performance by optimizing ad size for each device. Improving on smart banners, which only supported fixed heights, adaptive banners let developers specify the ad-width and use this to determine the optimal ad size.
+
+To pick the best ad size, adaptive banners use fixed aspect ratios instead of fixed heights. This results in banner ads that occupy a more consistent portion of the screen across devices and provide opportunities for improved performance.
+
+When working with adaptive banners, note that these will always return a constant size for a given device and width. Once you've tested your layout on a given device, you can be sure that the ad size will not change. However, the size of the banner creative may change across different devices. Consequently, it is recommended to ensure your layout can accommodate variances in ad height. In rare cases, the full adaptive size may not be filled and a standard size creative will be centered in this slot instead.
+
+
+> **Important**: You must know the width of the view that the ad will be placed in, **and this should take into account the device width and any display cutouts that are applicable**.
+
+To use adaptive banners, replace any calls to `setAdSize()` with `setAdaptiveAdSize()`. This function takes two optional parameters, the width and the orientation. The simplest option is to use the defaults,and then the extension will calculate the available width based on the current orientation and use that for creation of the adaptive banner size.
+
+
+```as3
+var adView:AdView = Adverts.service.createAdView();
+adView.setAdaptiveAdSize();
+adView.setAdUnitId( "ca-app-pub-3940256099942544/6300978111" );
+
+...
+
+```
+
+If you wish to preload an advert for a different width / orientation you can pass in the appropriate values, eg to set the :
+
+```as3
+adView.setAdaptiveAdSize( width, "portrait" );
+```
+
+Valid values for orientation are:
+- `portrait`
+- `landscape`
+- `auto` (default)
+
+If you are specifying an orientation different from the current, then you must supply a valid `width`.
+
+
 
 
 ## Loading

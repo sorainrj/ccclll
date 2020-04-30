@@ -1,1 +1,1 @@
-| com.distriqt.Adverts | 7.0.030 |
+| com.distriqt.Adverts | 8.0.050 |

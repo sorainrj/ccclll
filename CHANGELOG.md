@@ -1,5 +1,13 @@
 
 
+###### 2020.04.30 [v8.0.051]
+
+```
+Updated Rewarded Video API to new version
+Added Adaptive banners (resolves #152)
+```
+
+
 ###### 2020.03.23 [v7.0.031]
 
 ```
