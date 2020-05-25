@@ -10,14 +10,27 @@ It is very important that while you are developing your application that you do 
 
 The quickest way to enable testing is to use Google-provided test ad units. These ad units are not associated with your AdMob account, so there's no risk of your account generating invalid traffic when using these ad units. Here are sample ad units that point to specific test creatives for each format:
 
+### Android
+
 | Ad format | Sample ad unit ID |
 | --- | --- |
 | Banner | `ca-app-pub-3940256099942544/6300978111` |
 | Interstitial | `ca-app-pub-3940256099942544/1033173712` |
+| Interstitial Video | `ca-app-pub-3940256099942544/8691691433` |
 | Rewarded Video | `ca-app-pub-3940256099942544/5224354917` |
 | Native Advanced | `ca-app-pub-3940256099942544/2247696110` |
-| Native Express | (Small template): `ca-app-pub-3940256099942544/2793859312` |
-| | (Large template): `ca-app-pub-3940256099942544/2177258514` |
+| Native Advanced Video | `ca-app-pub-3940256099942544/1044960115` |
+
+### iOS
+
+| Ad format | Sample ad unit ID |
+| --- | --- |
+| Banner | `ca-app-pub-3940256099942544/2934735716` |
+| Interstitial | `ca-app-pub-3940256099942544/4411468910` |
+| Interstitial Video | `ca-app-pub-3940256099942544/5135589807` |
+| Rewarded Video | `ca-app-pub-3940256099942544/1712485313` |
+| Native Advanced | `ca-app-pub-3940256099942544/3986624511` |
+| Native Advanced Video | `ca-app-pub-3940256099942544/2521693316` |
 
 
 

@@ -30,7 +30,11 @@ package com.distriqt.test.adverts
 	import com.distriqt.extension.adverts.events.AdvertisingIdEvent;
 	import com.distriqt.extension.adverts.events.ConsentEvent;
 	import com.distriqt.extension.adverts.events.InterstitialAdEvent;
+	import com.distriqt.extension.adverts.events.NativeAdEvent;
 	import com.distriqt.extension.adverts.events.RewardedVideoAdEvent;
+	import com.distriqt.extension.adverts.nativeads.NativeAd;
+	import com.distriqt.extension.adverts.nativeads.NativeAdTemplate;
+	import com.distriqt.extension.adverts.nativeads.NativeAdTemplateStyle;
 	import com.distriqt.extension.adverts.rewarded.RewardedVideoAd;
 	import com.distriqt.extension.playservices.base.ConnectionResult;
 	import com.distriqt.extension.playservices.base.GoogleApiAvailability;
@@ -106,12 +110,14 @@ package com.distriqt.test.adverts
 						Config.admob_adUnitId_banner = Config.admob_android_adUnitId_banner;
 						Config.admob_adUnitId_interstitial = Config.admob_android_adUnitId_interstitial;
 						Config.admob_adUnitId_rewardedVideoAd = Config.admob_android_adUnitId_rewardedVideo;
+						Config.admob_adUnitId_nativeAd = Config.admob_android_adUnitId_nativeAd;
 					}
 					else
 					{
 						Config.admob_adUnitId_banner = Config.admob_ios_adUnitId_banner;
 						Config.admob_adUnitId_interstitial = Config.admob_ios_adUnitId_interstitial;
 						Config.admob_adUnitId_rewardedVideoAd = Config.admob_ios_adUnitId_rewardedVideo;
+						Config.admob_adUnitId_nativeAd = Config.admob_ios_adUnitId_nativeAd;
 					}
 					
 					Adverts.service.addEventListener( ErrorEvent.ERROR, errorHandler );
@@ -120,6 +126,8 @@ package com.distriqt.test.adverts
 							AdvertPlatform.PLATFORM_ADMOB,
 							Config.admob_ios_appId
 					);
+					
+					log( "Adverts.platformVersion = " + Adverts.service.platformVersion );
 				}
 			}
 			catch (e:Error)
@@ -642,5 +650,230 @@ package com.distriqt.test.adverts
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		//
+		//	NATIVE ADS
+		//
+		
+		private var _nativeAd : NativeAd;
+		
+		public function na_create():void
+		{
+			if (_nativeAd != null) return;
+			
+			if (Adverts.service.nativeAds.isSupported)
+			{
+				_nativeAd = Adverts.service.nativeAds.createNativeAd( Config.admob_adUnitId_nativeAd );
+				
+				_nativeAd.addEventListener( NativeAdEvent.LOADED, nativeAd_loadedHandler );
+				_nativeAd.addEventListener( NativeAdEvent.ERROR, nativeAd_errorHandler );
+				_nativeAd.addEventListener( NativeAdEvent.CLOSED, nativeAd_closedHandler );
+				_nativeAd.addEventListener( NativeAdEvent.CLICKED, nativeAd_clickedHandler );
+				_nativeAd.addEventListener( NativeAdEvent.OPENED, nativeAd_openedHandler );
+			}
+		}
+		
+		public function na_load():void
+		{
+			if (_nativeAd != null)
+			{
+				_nativeAd.load( new AdRequestBuilder().build() );
+			}
+		}
+		
+		public function na_show():void
+		{
+			if (_nativeAd != null)
+			{
+				var style:NativeAdTemplateStyle = new NativeAdTemplateStyle()
+						.setMainBackgroundColor( 0xFFFF0000 )
+
+						.setCallToActionBackgroundColor( 0xFFFF00FF )
+						.setCallToActionTypefaceColor( 0xFF000000 )
+						.setCallToActionTextSize( 30 )
+						
+						.setPrimaryTextBackgroundColor( 0xFF00FF00 )
+						.setPrimaryTextTypefaceColor( 0xFF000000 )
+
+						.setSecondaryTextBackgroundColor( 0xFF0000FF )
+						.setSecondaryTextTypefaceColor( 0xFF000000 )
+
+						.setTertiaryTextBackgroundColor( 0xFF666666 )
+						.setTertiaryTextTypefaceColor( 0xFF000000 )
+				;
+				
+				var initialParams:AdViewParams = new AdViewParams();
+				initialParams.width = Starling.current.nativeStage.stageWidth;
+				initialParams.height = 300;
+				initialParams.verticalAlign = AdViewParams.ALIGN_BOTTOM;
+				
+				_nativeAd.showWithTemplate(
+						NativeAdTemplate.SMALL,
+						initialParams,
+						style
+				);
+			}
+		}
+		
+		
+		public function na_show_medium():void
+		{
+			if (_nativeAd != null)
+			{
+				var style:NativeAdTemplateStyle = new NativeAdTemplateStyle()
+//						.setMainBackgroundColor( 0xFFFF0000 )
+//
+//						.setCallToActionBackgroundColor( 0xFFFF00FF )
+//						.setCallToActionTypefaceColor( 0xFF000000 )
+//
+//						.setPrimaryTextBackgroundColor( 0xFF00FF00 )
+//						.setPrimaryTextTypefaceColor( 0xFF000000 )
+//
+//						.setSecondaryTextBackgroundColor( 0xFF0000FF )
+//						.setSecondaryTextTypefaceColor( 0xFF000000 )
+//
+//						.setTertiaryTextBackgroundColor( 0xFF666666 )
+//						.setTertiaryTextTypefaceColor( 0xFF000000 )
+				;
+				
+				var initialParams:AdViewParams = new AdViewParams();
+				initialParams.y = 0;
+				initialParams.x = 0;
+				initialParams.width = Starling.current.nativeStage.stageWidth * 0.8;
+				initialParams.height = Starling.current.nativeStage.stageHeight / Starling.current.nativeStage.stageWidth * initialParams.width;
+				
+				_nativeAd.showWithTemplate(
+						NativeAdTemplate.MEDIUM,
+						initialParams,
+						style
+				);
+			}
+		}
+		
+		private var _naViewParamsState:int = -1;
+		public function na_viewParams():void
+		{
+			if (null != _nativeAd)
+			{
+				var params:AdViewParams = new AdViewParams();
+
+				_naViewParamsState++;
+				switch (_naViewParamsState)
+				{
+					case 0:
+						params.width = Starling.current.nativeStage.stageWidth * Math.random();
+						params.height = 400;
+						params.x = 50;
+						params.y = Math.random() * 1000;
+						break;
+					
+					case 1:
+						params.width = 500;
+						params.height = 150;
+						params.verticalAlign = AdViewParams.ALIGN_TOP;
+						params.horizontalAlign = AdViewParams.ALIGN_RIGHT;
+						break;
+					
+					case 2:
+						params.verticalAlign = AdViewParams.ALIGN_BOTTOM;
+						break;
+					
+					case 3:
+						params.width = 800;
+						params.height = 200;
+						params.x = 50;
+						params.verticalAlign = AdViewParams.ALIGN_BOTTOM;
+						break;
+					
+					case 4:
+						params.width = Starling.current.nativeStage.stageWidth * 0.7;
+						params.height = 400;
+						params.verticalAlign = AdViewParams.ALIGN_BOTTOM;
+						params.horizontalAlign = AdViewParams.ALIGN_CENTER;
+						break;
+					
+					default:
+						_naViewParamsState = -1;
+				}
+
+				try
+				{
+					_nativeAd.setViewParams( params );
+				}
+				catch (e:Error)
+				{
+					log( e.message );
+				}
+			}
+		}
+		
+		public function na_getViewParams():void
+		{
+			if (null != _nativeAd)
+			{
+				var p:AdViewParams = _nativeAd.getViewParams();
+				log( "getViewParams(): " + p.toString() );
+			}
+		}
+		
+		
+		public function na_toggleVisible():void
+		{
+			if (null != _nativeAd)
+			{
+				_nativeAd.visible = !_nativeAd.visible;
+			}
+		}
+		
+		
+		public function na_destroy():void
+		{
+			if (_nativeAd != null)
+			{
+				_nativeAd.removeEventListener( NativeAdEvent.LOADED, nativeAd_loadedHandler );
+				_nativeAd.removeEventListener( NativeAdEvent.CLOSED, nativeAd_closedHandler );
+				_nativeAd.removeEventListener( NativeAdEvent.ERROR, nativeAd_errorHandler );
+				_nativeAd.removeEventListener( NativeAdEvent.CLICKED, nativeAd_clickedHandler );
+				_nativeAd.removeEventListener( NativeAdEvent.OPENED, nativeAd_openedHandler );
+				_nativeAd.destroy();
+				_nativeAd = null;
+			}
+		}
+		
+		private function nativeAd_loadedHandler( event:NativeAdEvent ):void
+		{
+			log( "nativeAd_loadedHandler" );
+		}
+		
+		
+		private function nativeAd_closedHandler( event:NativeAdEvent ):void
+		{
+			log( "nativeAd_closedHandler" );
+		}
+		
+		
+		private function nativeAd_errorHandler( event:NativeAdEvent ):void
+		{
+			log( "nativeAd_errorHandler: " + event.errorCode + "::"+event.errorMessage );
+		}
+		
+		
+		private function nativeAd_clickedHandler( event:NativeAdEvent ):void
+		{
+			log( "nativeAd_clickedHandler" );
+		}
+		
+		
+		private function nativeAd_openedHandler( event:NativeAdEvent ):void
+		{
+			log( "nativeAd_openedHandler" );
+		}
 	}
 }

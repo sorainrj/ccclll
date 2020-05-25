@@ -121,6 +121,17 @@ package com.distriqt.test.adverts
 			addAction( "Show :Rewarded Video", _tests.rewardedVideo_show );
 			
 			
+			addAction( "Create :Native Ad", _tests.na_create );
+			addAction( "Load :Native Ad", _tests.na_load );
+			addAction( "Show :Native Ad", _tests.na_show );
+			addAction( "Show (medium) :Native Ad", _tests.na_show_medium );
+			addAction( "View Params :Native Ad", _tests.na_viewParams );
+			addAction( "Get View Params :Native Ad", _tests.na_getViewParams );
+			addAction( "Toggle Visible :Native Ad", _tests.na_toggleVisible );
+			addAction( "Destroy :Native Ad", _tests.na_destroy );
+			
+			
+			
 			addAction( "Set Debug :Consent", _tests.setConsentDebug );
 			addAction( "Get Consent Status :Consent", _tests.getConsentStatus );
 			addAction( "Ask For Consent :Consent", _tests.askForConsent );

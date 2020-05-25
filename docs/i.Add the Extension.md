@@ -36,6 +36,7 @@ This extension requires the following extensions:
 - [androidx.appcompat.ane](https://github.com/distriqt/ANE-AndroidSupport/raw/master/lib/androidx.appcompat.ane)
 - [androidx.browser.ane](https://github.com/distriqt/ANE-AndroidSupport/raw/master/lib/androidx.browser.ane)
 - [androidx.core.ane](https://github.com/distriqt/ANE-AndroidSupport/raw/master/lib/androidx.core.ane)
+- [androidx.constraintlayout.ane](https://github.com/distriqt/ANE-AndroidSupport/raw/master/lib/androidx.constraintlayout.ane)
 - [androidx.vectordrawable.ane](https://github.com/distriqt/ANE-AndroidSupport/raw/master/lib/androidx.vectordrawable.ane)
 - [com.google.code.gson.ane](https://github.com/distriqt/ANE-AndroidSupport/raw/master/lib/com.google.code.gson.ane)
 
@@ -81,15 +82,15 @@ The following should be added to your `extensions` node in your application desc
 <extensions>
 	<extensionID>com.distriqt.Adverts</extensionID>
 	<extensionID>com.distriqt.Core</extensionID>
-	
+
 	<extensionID>com.distriqt.playservices.Base</extensionID>
 	<extensionID>com.distriqt.playservices.Ads</extensionID>
 
 	<extensionID>androidx.appcompat</extensionID>
 	<extensionID>androidx.browser</extensionID>
 	<extensionID>androidx.core</extensionID>
+	<extensionID>androidx.constraintlayout</extensionID>
 	<extensionID>androidx.vectordrawable</extensionID>
-
 	<extensionID>com.google.code.gson</extensionID>
 </extensions>
 ```
@@ -102,6 +103,9 @@ The following should be added to your `extensions` node in your application desc
 ### Manifest Additions
 
 The Adverts ANE requires a few additions to the manifest to be able to start certain activities. You should add the listing below to your manifest, replacing `APPLICATION_ID` with your AIR application id on Android (eg `air.com.distriqt.test`) Note that it may be prefixed by `air.`.
+
+Make sure you add the  `com.google.android.gms.ads.APPLICATION_ID` `meta-data` tag with a string value of your AdMob app ID into the application node. You can [find your App ID](https://support.google.com/admob/answer/7356431) in the AdMob UI.
+
 
 ```xml
 <manifest android:installLocation="auto">
@@ -116,6 +120,10 @@ The Adverts ANE requires a few additions to the manifest to be able to start cer
 
 		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
 		
+		<meta-data
+			android:name="com.google.android.gms.ads.APPLICATION_ID"
+			android:value="ca-app-pub-AAAAAAAAAAAAAAAA~XXXXXXXXXX"/>
+
 		<activity
 			android:name="com.google.android.gms.common.api.GoogleApiActivity"
 			android:exported="false"
@@ -137,6 +145,10 @@ The Adverts ANE requires a few additions to the manifest to be able to start cer
 ### Info Additions
 
 Add a `GADApplicationIdentifier` key with a string value of your AdMob app ID into the info additions node. You can [find your App ID](https://support.google.com/admob/answer/7356431) in the AdMob UI.
+
+
+**Note: If you fail to add the `GADApplicationIdentifier` key you may find your application will crash on launch.**
+
 
 
 ```xml

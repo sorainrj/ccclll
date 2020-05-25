@@ -1,5 +1,15 @@
 
 
+###### 2020.05.25 [v9.0.022]
+
+```
+Updated AdMob SDK 
+ - Android v19.1.0
+ - iOS v7.59.0 (resolves #167)
+Added Native Ad templates (resolves #164) 
+```
+
+
 ###### 2020.04.30 [v8.0.051]
 
 ```
