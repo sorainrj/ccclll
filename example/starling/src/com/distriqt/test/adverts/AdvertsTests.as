@@ -412,7 +412,7 @@ package com.distriqt.test.adverts
 			{
 				var builder:AdRequestBuilder = new AdRequestBuilder()
 //						.setIsDesignedForFamilies( true )
-//						.tagForChildDirectedTreatment( true )
+						.tagForChildDirectedTreatment( false )
 //						.addKeyword( "distriqt" )
 //						.maxAdContentRating( "G" )
 //						.nonPersonalisedAds( true )

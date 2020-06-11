@@ -1,5 +1,14 @@
 
 
+###### 2020.06.11 [v9.1.047]
+
+```
+Updated AdMob SDK
+ - iOS v7.60.0
+Updated show/hide of banners and native ads (resolves #174)
+```
+
+
 ###### 2020.05.25 [v9.0.022]
 
 ```
