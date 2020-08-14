@@ -101,7 +101,8 @@ package com.distriqt.test.adverts
 			addAction( "Dispose", _tests.destroy );
 			addAction( "Get Advertising Id", _tests.getAdvertisingId );
 			
-			
+
+
 			addAction( "Simple Test :AdView", _tests.simpleCreateAndShowTest );
 			addAction( "Create :AdView", _tests.adView_create );
 			addAction( "Load :AdView", _tests.adView_load );
@@ -111,6 +112,7 @@ package com.distriqt.test.adverts
 			addAction( "View Params (adsize) :AdView", _tests.adView_setViewParams_fromAdSize );
 			addAction( "View Params (align) :AdView", _tests.adView_setViewParams_align );
 			addAction( "Hide :AdView", _tests.adView_hide );
+			
 			
 			
 			addAction( "Load :Interstitial", _tests.loadInterstitial );
@@ -129,7 +131,6 @@ package com.distriqt.test.adverts
 			addAction( "Get View Params :Native Ad", _tests.na_getViewParams );
 			addAction( "Toggle Visible :Native Ad", _tests.na_toggleVisible );
 			addAction( "Destroy :Native Ad", _tests.na_destroy );
-			
 			
 			
 			addAction( "Set Debug :Consent", _tests.setConsentDebug );

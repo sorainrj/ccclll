@@ -61,6 +61,7 @@ This extension requires the following Google Play Services:
 
 - [com.distriqt.playservices.Base.ane](https://github.com/distriqt/ANE-GooglePlayServices/raw/master/lib/com.distriqt.playservices.Base.ane)
 - [com.distriqt.playservices.Ads.ane](https://github.com/distriqt/ANE-GooglePlayServices/raw/master/lib/com.distriqt.playservices.Ads.ane)
+- [com.distriqt.playservices.AdsIdentifier.ane](https://github.com/distriqt/ANE-GooglePlayServices/raw/master/lib/com.distriqt.playservices.AdsIdentifier.ane)
 
 You must include the above native extensions in your application along with this extension, 
 and you need to ensure they are packaged with your application.
@@ -85,6 +86,7 @@ The following should be added to your `extensions` node in your application desc
 
 	<extensionID>com.distriqt.playservices.Base</extensionID>
 	<extensionID>com.distriqt.playservices.Ads</extensionID>
+	<extensionID>com.distriqt.playservices.AdsIdentifier</extensionID>
 
 	<extensionID>androidx.appcompat</extensionID>
 	<extensionID>androidx.browser</extensionID>
@@ -107,6 +109,9 @@ The Adverts ANE requires a few additions to the manifest to be able to start cer
 Make sure you add the  `com.google.android.gms.ads.APPLICATION_ID` `meta-data` tag with a string value of your AdMob app ID into the application node. You can [find your App ID](https://support.google.com/admob/answer/7356431) in the AdMob UI.
 
 
+Also we suggest you enable hardware acceleration so videos are displayed correctly (i.e. the `android:hardwareAccelerated="true"` attribute on your android `application` tag).
+
+
 ```xml
 <manifest android:installLocation="auto">
 	
@@ -116,7 +121,9 @@ Make sure you add the  `com.google.android.gms.ads.APPLICATION_ID` `meta-data` t
 	<!--Optional. Used to check if an internet connection is available prior to making an ad request.-->
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
-	<application>
+	<application 
+		android:hardwareAccelerated="true"
+		android:appComponentFactory="androidx.core.app.CoreComponentFactory">
 
 		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
 		
@@ -138,6 +145,22 @@ Make sure you add the  `com.google.android.gms.ads.APPLICATION_ID` `meta-data` t
 
 </manifest>
 ```
+
+We also suggest that you add the `containsVideo` tag to your `android` configuration:
+
+
+```xml
+<android>
+	<manifestAdditions><![CDATA[
+		<!-- MANIFEST -->
+	)></manifestAdditions>
+	
+	<containsVideo>true</containsVideo>
+
+</android>
+```
+
+
 
 
 ## iOS 

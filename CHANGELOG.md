@@ -1,5 +1,16 @@
 
 
+###### 2020.08.14 [v9.2.128]
+
+```
+Updated AdMob SDK
+ - iOS v7.62.0
+Updated build and docs with new AdsIdentifier Google Play Services
+Android: Corrected native ad ratings star display
+iOS: Fixed white background on ios native ad template
+```
+
+
 ###### 2020.06.11 [v9.1.047]
 
 ```

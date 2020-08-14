@@ -40,6 +40,7 @@ package com.distriqt.test.adverts
 	import com.distriqt.extension.playservices.base.GoogleApiAvailability;
 	
 	import flash.events.ErrorEvent;
+	import flash.utils.setTimeout;
 	
 	import starling.core.Starling;
 	import starling.display.Quad;
@@ -698,7 +699,7 @@ package com.distriqt.test.adverts
 						.setCallToActionBackgroundColor( 0xFFFF00FF )
 						.setCallToActionTypefaceColor( 0xFF000000 )
 						.setCallToActionTextSize( 30 )
-						
+
 						.setPrimaryTextBackgroundColor( 0xFF00FF00 )
 						.setPrimaryTextTypefaceColor( 0xFF000000 )
 
@@ -728,26 +729,26 @@ package com.distriqt.test.adverts
 			if (_nativeAd != null)
 			{
 				var style:NativeAdTemplateStyle = new NativeAdTemplateStyle()
-//						.setMainBackgroundColor( 0xFFFF0000 )
-//
-//						.setCallToActionBackgroundColor( 0xFFFF00FF )
-//						.setCallToActionTypefaceColor( 0xFF000000 )
-//
-//						.setPrimaryTextBackgroundColor( 0xFF00FF00 )
-//						.setPrimaryTextTypefaceColor( 0xFF000000 )
-//
-//						.setSecondaryTextBackgroundColor( 0xFF0000FF )
-//						.setSecondaryTextTypefaceColor( 0xFF000000 )
-//
-//						.setTertiaryTextBackgroundColor( 0xFF666666 )
-//						.setTertiaryTextTypefaceColor( 0xFF000000 )
+						.setMainBackgroundColor( 0xFFFF0000 )
+
+						.setCallToActionBackgroundColor( 0xFFFF00FF )
+						.setCallToActionTypefaceColor( 0xFF000000 )
+
+						.setPrimaryTextBackgroundColor( 0xFF00FF00 )
+						.setPrimaryTextTypefaceColor( 0xFF000000 )
+
+						.setSecondaryTextBackgroundColor( 0xFF0000FF )
+						.setSecondaryTextTypefaceColor( 0xFF000000 )
+
+						.setTertiaryTextBackgroundColor( 0xFF666666 )
+						.setTertiaryTextTypefaceColor( 0xFF000000 )
 				;
 				
 				var initialParams:AdViewParams = new AdViewParams();
 				initialParams.y = 0;
 				initialParams.x = 0;
 				initialParams.width = Starling.current.nativeStage.stageWidth * 0.8;
-				initialParams.height = Starling.current.nativeStage.stageHeight / Starling.current.nativeStage.stageWidth * initialParams.width;
+				initialParams.height = 350 / 320 * initialParams.width;
 				
 				_nativeAd.showWithTemplate(
 						NativeAdTemplate.MEDIUM,
@@ -756,6 +757,7 @@ package com.distriqt.test.adverts
 				);
 			}
 		}
+		
 		
 		private var _naViewParamsState:int = -1;
 		public function na_viewParams():void
@@ -799,8 +801,26 @@ package com.distriqt.test.adverts
 						params.horizontalAlign = AdViewParams.ALIGN_CENTER;
 						break;
 					
+					
+					case 5:
+						params.width = Starling.current.nativeStage.stageWidth * 0.5;
+						params.height = Starling.current.nativeStage.stageHeight / Starling.current.nativeStage.stageWidth * params.width;
+						break;
+					
+					case 6:
+						params.width = Starling.current.nativeStage.stageWidth * 0.9;
+						params.height = Starling.current.nativeStage.stageHeight / Starling.current.nativeStage.stageWidth * params.width;
+						break;
+					
+					case 7:
+						params.width = Starling.current.nativeStage.stageWidth;
+						params.height = Starling.current.nativeStage.stageHeight;
+						setTimeout( na_viewParams, 2000 );
+						break;
+						
 					default:
 						_naViewParamsState = -1;
+						setTimeout( na_viewParams, 100 );
 				}
 
 				try

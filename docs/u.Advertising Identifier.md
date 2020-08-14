@@ -51,5 +51,27 @@ Adverts.service.getAdvertisingId(
 
 
 
+### Errors
 
+Please note that you need to include the `com.distriqt.playservices.AdsIdentifier` dependency in order to support the advertising identifier on Android.
+
+If you don't include this extension you may receive an `ErrorEvent.ERROR` during the `getAdvertisingId()` call with text indicating the missing extension.
+
+
+```as3
+Adverts.service.addEventListener( ErrorEvent.ERROR, errorHandler );
+
+
+...
+
+Adverts.service.getAdvertisingId();
+
+...
+
+
+function errorHandler( event:ErrorEvent ):void 
+{
+    // An error occurred
+}
+```
 

@@ -31,6 +31,7 @@ package
 		public static var admob_android_adUnitId_interstitial : String = "ca-app-pub-3940256099942544/1033173712";
 		public static var admob_android_adUnitId_rewardedVideo : String = "ca-app-pub-3940256099942544/5224354917";
 		public static var admob_android_adUnitId_nativeAd : String = "ca-app-pub-3940256099942544/2247696110";
+//		public static var admob_android_adUnitId_nativeAd : String = "ca-app-pub-3940256099942544/1044960115";
 		
 		
 		
