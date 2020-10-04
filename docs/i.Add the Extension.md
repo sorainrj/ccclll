@@ -121,6 +121,8 @@ Also we suggest you enable hardware acceleration so videos are displayed correct
 	<!--Optional. Used to check if an internet connection is available prior to making an ad request.-->
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+
 	<application 
 		android:hardwareAccelerated="true"
 		android:appComponentFactory="androidx.core.app.CoreComponentFactory">
@@ -131,15 +133,22 @@ Also we suggest you enable hardware acceleration so videos are displayed correct
 			android:name="com.google.android.gms.ads.APPLICATION_ID"
 			android:value="ca-app-pub-AAAAAAAAAAAAAAAA~XXXXXXXXXX"/>
 
-		<activity
-			android:name="com.google.android.gms.common.api.GoogleApiActivity"
-			android:exported="false"
-			android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
 		<activity 
 			android:name="com.google.android.gms.ads.AdActivity"
 			android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" 
+			android:exported="false"
 			android:theme="@android:style/Theme.Translucent" />
+
+		<provider
+			android:name="com.google.android.gms.ads.MobileAdsInitProvider"
+			android:authorities="air.com.distriqt.test.debug.mobileadsinitprovider"
+			android:exported="false"
+			android:initOrder="100" />
+
+		<service
+			android:name="com.google.android.gms.ads.AdService"
+			android:enabled="true"
+			android:exported="false" />
 			
 	</application>
 
@@ -212,6 +221,29 @@ impacted by ATS on iOS 9 devices, while `NSAllowsArbitraryLoadsForMedia` and
 not impacted by ATS on iOS 10 devices.
 
 
+
+Add the `SKAdNetworkItems` key with Google's `SKAdNetworkIdentifier` value of `cstr6suwn9.skadnetwork`:
+
+```xml
+<key>SKAdNetworkItems</key>
+<array>
+	<dict>
+		<key>SKAdNetworkIdentifier</key>
+		<string>cstr6suwn9.skadnetwork</string>
+	</dict>
+</array>
+```
+
+
+For iOS 14 you need to add the `NSUserTrackingUsageDescription` string to specify the message shown to users when requesting app tracking through the new App Tracking Transparency framework.  The string specified here will be shown to users when the permission request is presented.
+
+```xml
+<key>NSUserTrackingUsageDescription</key>
+<string>This identifier will be used to deliver personalized ads to you.</string>
+```
+
+
+
 Example:
 
 
@@ -236,6 +268,17 @@ Example:
 
 		<key>GADApplicationIdentifier</key>
 		<string>ca-app-pub-AAAAAAAAAAAAAAAA~XXXXXXXXXX</string>
+
+		<key>NSUserTrackingUsageDescription</key>
+		<string>This identifier will be used to deliver personalized ads to you.</string>
+
+		<key>SKAdNetworkItems</key>
+		<array>
+			<dict>
+				<key>SKAdNetworkIdentifier</key>
+				<string>cstr6suwn9.skadnetwork</string>
+			</dict>
+		</array>
 	)></InfoAdditions>
 	<requestedDisplayResolution>high</requestedDisplayResolution>
 	<Entitlements>

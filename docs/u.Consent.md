@@ -1,5 +1,10 @@
 
 >
+> **The Consent SDK has been deprecated. You should migrate to the new ![](User Messaging Platform|u.User Messaging Platform) to ensure you have access to the latest consent gathering tools**
+>
+
+
+>
 > **Important** There are additional resources required to be packaged with your application in order to use this part of the SDK. 
 > This is described in the ![](Consent Form Resources|u.Consent#consent-form-resources) section below.
 >

@@ -24,16 +24,19 @@ Currently the extension supports the following advertising platforms:
 > through the ANE.
 >
 
+
 ### Features
 
-- Show/Hide adverts
-- Identical cross-platform implementation
-- Position and auto-alignment options
-- AdMob on both iOS and Android
+- Show/Hide adverts;
+- Identical cross-platform implementation;
+- Position and auto-alignment options;
+- AdMob on both iOS and Android;
 - Support for:
-  - Banners
-  - Interstitials
-  
+  - Banners;
+  - Interstitials;
+  - Rewarded Video;
+  - Native Ad Templates;
+- Consent through the User Messaging Platform;
 
 
 As with all our extensions you get access to a year of support and updates as we are 

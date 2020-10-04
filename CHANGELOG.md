@@ -1,5 +1,17 @@
 
 
+###### 2020.10.04 [v10.0.021]
+
+```
+Implemented User Messaging Platform (resolves #195)
+Updated initialisation process to better handle consent
+
+Updated AdMob SDK 
+ - Android v19.4.0 (#194)
+ - iOS v7.66.0
+```
+
+
 ###### 2020.08.14 [v9.2.128]
 
 ```

@@ -36,6 +36,11 @@ package com.distriqt.test.adverts
 	import com.distriqt.extension.adverts.nativeads.NativeAdTemplate;
 	import com.distriqt.extension.adverts.nativeads.NativeAdTemplateStyle;
 	import com.distriqt.extension.adverts.rewarded.RewardedVideoAd;
+	import com.distriqt.extension.adverts.ump.ConsentDebugSettings;
+	import com.distriqt.extension.adverts.ump.ConsentInformation;
+	import com.distriqt.extension.adverts.ump.ConsentRequestParameters;
+	import com.distriqt.extension.adverts.ump.events.ConsentInformationEvent;
+	import com.distriqt.extension.adverts.ump.events.UserMessagingPlatformEvent;
 	import com.distriqt.extension.playservices.base.ConnectionResult;
 	import com.distriqt.extension.playservices.base.GoogleApiAvailability;
 	
@@ -123,12 +128,15 @@ package com.distriqt.test.adverts
 					
 					Adverts.service.addEventListener( ErrorEvent.ERROR, errorHandler );
 					
-					Adverts.service.initialisePlatform(
+					Adverts.service.setup(
 							AdvertPlatform.PLATFORM_ADMOB,
 							Config.admob_ios_appId
 					);
-					
 					log( "Adverts.platformVersion = " + Adverts.service.platformVersion );
+					
+					
+					// If required, delay this call until after consent has been requested.
+					Adverts.service.initialise();
 				}
 			}
 			catch (e:Error)
@@ -136,6 +144,7 @@ package com.distriqt.test.adverts
 				log( "ERROR: " + e.message );
 			}
 		}
+		
 		
 		private function errorHandler( event:ErrorEvent ):void
 		{
@@ -653,8 +662,126 @@ package com.distriqt.test.adverts
 		
 		
 		
+		//
+		//	USER MESSAGING PLATFORM
+		//
 		
 		
+		public function ump_getConsentStatus():void
+		{
+			log( "ump_getConsentStatus()" );
+			if (Adverts.service.ump.isSupported)
+			{
+				var consentInformation:ConsentInformation = Adverts.service.ump.getConsentInformation();
+				log( "consent getConsentStatus(): " + consentInformation.getConsentStatus() );
+				log( "consent getConsentType():   " + consentInformation.getConsentType() );
+				log( "consent isConsentFormAvailable():   " + consentInformation.isConsentFormAvailable() );
+			}
+		}
+		
+		
+		
+		
+		public function ump_updateConsent():void
+		{
+			log( "ump_updateConsent()" );
+			if (Adverts.service.ump.isSupported)
+			{
+				var params:ConsentRequestParameters = new ConsentRequestParameters()
+						.setTagForUnderAgeOfConsent( false )
+						.setConsentDebugSettings(
+								new ConsentDebugSettings()
+//										.addTestDeviceHashedId( "56A70AEC8354671E4E086619542E5E2F" )
+										.addTestDeviceHashedId( "7E98056F-6BE4-4380-A4A1-C79D1BCD80AC" )
+										.setDebugGeography( com.distriqt.extension.adverts.ump.DebugGeography.DEBUG_GEOGRAPHY_EEA )
+						)
+				;
+				
+				var consentInformation:ConsentInformation = Adverts.service.ump.getConsentInformation();
+				consentInformation.addEventListener( ConsentInformationEvent.CONSENT_INFO_UPDATE_SUCCESS, consentInformation_updateSuccessHandler );
+				consentInformation.addEventListener( ConsentInformationEvent.CONSENT_INFO_UPDATE_FAILURE, consentInformation_updateFailureHandler );
+				consentInformation.requestConsentInfoUpdate( params );
+			}
+		}
+		
+		private function consentInformation_updateSuccessHandler( event:ConsentInformationEvent ):void
+		{
+			log( "consentInformation_updateSuccessHandler()" );
+			event.currentTarget.removeEventListener( ConsentInformationEvent.CONSENT_INFO_UPDATE_SUCCESS, consentInformation_updateSuccessHandler );
+			event.currentTarget.removeEventListener( ConsentInformationEvent.CONSENT_INFO_UPDATE_FAILURE, consentInformation_updateFailureHandler );
+		}
+		
+		private function consentInformation_updateFailureHandler( event:ConsentInformationEvent ):void
+		{
+			log( "consentInformation_updateFailureHandler() : ["+event.error.errorID+"] " + event.error.message );
+			event.currentTarget.removeEventListener( ConsentInformationEvent.CONSENT_INFO_UPDATE_SUCCESS, consentInformation_updateSuccessHandler );
+			event.currentTarget.removeEventListener( ConsentInformationEvent.CONSENT_INFO_UPDATE_FAILURE, consentInformation_updateFailureHandler );
+		}
+		
+		
+		
+		public function ump_loadForm():void
+		{
+			log( "ump_loadForm()" );
+			if (Adverts.service.ump.isSupported)
+			{
+				var consentInformation:ConsentInformation = Adverts.service.ump.getConsentInformation();
+				
+				if (consentInformation.isConsentFormAvailable())
+				{
+					Adverts.service.ump.addEventListener( UserMessagingPlatformEvent.CONSENT_FORM_LOAD_SUCCESS, ump_loadFormSuccessHandler );
+					Adverts.service.ump.addEventListener( UserMessagingPlatformEvent.CONSENT_FORM_LOAD_FAILURE, ump_loadFormFailureHandler );
+					Adverts.service.ump.loadConsentForm();
+				}
+				else
+				{
+					log( "ump_loadForm() No form available" );
+				}
+			}
+		}
+		
+		private function ump_loadFormSuccessHandler( event:UserMessagingPlatformEvent ):void
+		{
+			log( "ump_loadFormSuccessHandler()" );
+		}
+		
+		private function ump_loadFormFailureHandler( event:UserMessagingPlatformEvent ):void
+		{
+			log( "ump_loadFormFailureHandler() : ["+event.error.errorID+"] " + event.error.message );
+		}
+		
+		
+		
+		public function ump_showForm():void
+		{
+			log( "ump_showForm()" );
+			if (Adverts.service.ump.isSupported)
+			{
+				var consentInformation:ConsentInformation = Adverts.service.ump.getConsentInformation();
+				
+				if (consentInformation.isConsentFormAvailable())
+				{
+					Adverts.service.ump.addEventListener( UserMessagingPlatformEvent.CONSENT_FORM_DISMISSED, ump_showFormDismissedHandler );
+					Adverts.service.ump.showConsentForm();
+				}
+				else
+				{
+					log( "ump_showForm() No form available" );
+				}
+			}
+		}
+		
+		private function ump_showFormDismissedHandler( event:UserMessagingPlatformEvent ):void
+		{
+			log( "ump_showFormDismissedHandler()" );
+		}
+		
+		
+		
+		public function ump_reset():void
+		{
+			Adverts.service.ump.getConsentInformation().reset();
+		}
 		
 		
 		

@@ -16,6 +16,10 @@ package com.distriqt.test.adverts
 	import feathers.layout.HorizontalAlign;
 	import feathers.layout.VerticalAlign;
 	
+	import flash.geom.Rectangle;
+	
+	import flash.media.StageWebView;
+	
 	import flash.system.Capabilities;
 	
 	import feathers.controls.Button;
@@ -24,7 +28,10 @@ package com.distriqt.test.adverts
 	import feathers.layout.VerticalLayout;
 	import feathers.themes.MetalWorksMobileTheme;
 	
+	import starling.core.Starling;
+	
 	import starling.display.Sprite;
+	import starling.display.Stage;
 	import starling.events.Event;
 	import starling.text.TextField;
 	import starling.text.TextFormat;
@@ -65,6 +72,12 @@ package com.distriqt.test.adverts
 		{
 			super();
 			addEventListener( Event.ADDED_TO_STAGE, addedToStageHandler );
+			
+//			var options:NativeWebViewOptions = new NativeWebViewOptions();
+//			NativeWebView.service.initialisePlatform( options, function( success:Boolean):void
+//			{
+//				// You can now create web views
+//			});
 		}
 		
 		
@@ -89,10 +102,14 @@ package com.distriqt.test.adverts
 			layout.gap = 5;
 			
 			_container = new ScrollContainer();
-			_container.y = 40;
+			_container.y = 300;
 			_container.layout = layout;
 			_container.width = stage.stageWidth;
-			_container.height = stage.stageHeight-40;
+			_container.height = stage.stageHeight-300;
+			
+			
+			addAction( "Add CustomWebView", addWebView );
+			addAction( "Remove CustomWebView", removeWebView );
 			
 			_tests = new AdvertsTests( this );
 			
@@ -101,7 +118,6 @@ package com.distriqt.test.adverts
 			addAction( "Dispose", _tests.destroy );
 			addAction( "Get Advertising Id", _tests.getAdvertisingId );
 			
-
 
 			addAction( "Simple Test :AdView", _tests.simpleCreateAndShowTest );
 			addAction( "Create :AdView", _tests.adView_create );
@@ -133,10 +149,15 @@ package com.distriqt.test.adverts
 			addAction( "Destroy :Native Ad", _tests.na_destroy );
 			
 			
-			addAction( "Set Debug :Consent", _tests.setConsentDebug );
-			addAction( "Get Consent Status :Consent", _tests.getConsentStatus );
-			addAction( "Ask For Consent :Consent", _tests.askForConsent );
+//			addAction( "Set Debug :Consent", _tests.setConsentDebug );
+//			addAction( "Get Consent Status :Consent", _tests.getConsentStatus );
+//			addAction( "Ask For Consent :Consent", _tests.askForConsent );
 			
+			addAction( "Get Consent Status :UMP", _tests.ump_getConsentStatus );
+			addAction( "Update Consent :UMP", _tests.ump_updateConsent );
+			addAction( "Load Form :UMP", _tests.ump_loadForm );
+			addAction( "Show Form :UMP", _tests.ump_showForm );
+			addAction( "Reset :UMP", _tests.ump_reset );
 			
 			addChild( _tests );
 			addChild( _text );
@@ -153,7 +174,48 @@ package com.distriqt.test.adverts
 		}
 		
 		
-		
+//		private var stageWebView:StageWebView;
+//
+//
+//		private var browser:CustomWebView;
+
+		private function addWebView():void
+		{
+//			if (stageWebView == null)
+//			{
+//				stageWebView = new StageWebView();
+//				stageWebView.stage = Starling.current.nativeStage;
+//				stageWebView.viewPort = new flash.geom.Rectangle( 0,0,400, 300 );
+//				stageWebView.loadURL( "https://distriqt.com" );
+//			}
+//
+////			if (browser == null)
+////			{
+////				browser = new CustomWebView();
+////				browser.width = 400;
+////				browser.height = 300;
+////				this.addChild( browser );
+////
+////				browser.loadURL( "https://distriqt.com" );
+////			}
+		}
+
+		private function removeWebView():void
+		{
+//			if (stageWebView != null)
+//			{
+//				stageWebView.stage = null;
+//				stageWebView.dispose();
+//				stageWebView = null;
+//			}
+
+//			if (browser != null)
+//			{
+//				removeChild( browser );
+//				browser.dispose();
+//				browser = null;
+//			}
+		}
 		
 		
 		////////////////////////////////////////////////////////

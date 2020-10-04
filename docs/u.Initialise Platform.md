@@ -1,17 +1,30 @@
 
-## Initialising the extension
+## Setup the platform
 
-You should perform this once in your application near where you are going to initially 
-display an advert. This initialises the platform using your advertising settings. 
+You should perform this once in your application preferrably early well before any adverts will be displayed. 
+
+This is a two step process. You should initially call `setup` specifying you platform selection and then call `initialise` to initialise the platform.
+
+
+Firstly select the platform:
 
 ```as3
-if (Adverts.isSupported)
-{
-	Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB, YOUR_ACCOUNT_ID );
-}
+Adverts.service.setup( AdvertPlatform.PLATFORM_ADMOB );
 ```
 
-The account id will be platform specific but is generally some form of application or user identifier.
+Then call `initialise()`:
+
+```as3
+Adverts.service.initialise();
+```
+
+
+>
+> **Warning**: Ads may be preloaded by the underlying advertising SDK or mediation partner SDKs upon calling `initialise()`. If you need to obtain consent from users in the European Economic Area (EEA), set any request-specific flags (such as tagForChildDirectedTreatment or tag_for_under_age_of_consent), or otherwise take action before loading ads, ensure you do so before calling `initialise()`. 
+>
+> This is the main reason there are two steps in the process to allow you to acquire consent before loading any ads.
+>
+
 
 
 ### Checking Support
@@ -34,29 +47,3 @@ else
 }
 ```
 
-
-### AdMob
-
-With AdMob the account id is the app id from the console. The app id is of a similar form to ad unit ids 
-so don't get confused between them.
-
-**You should provide this account id on both iOS and Android now.** (Previously you only had to provide an account id on iOS). 
-
-Call this as below:
-
-```as3
-Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB, APP_ID );
-```
-
-You may have different app id's for iOS and Android:
-
-```as3
-if (Adverts.service.implementation == "Android")
-{
-	Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB, ANDROID_APP_ID );
-}
-else 
-{
-	Adverts.service.initialisePlatform( AdvertPlatform.PLATFORM_ADMOB, IOS_APP_ID );
-}
-```
