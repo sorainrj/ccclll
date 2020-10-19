@@ -1,5 +1,5 @@
 
-# Obtaining Consent with the User Messaging Platform
+## Obtaining Consent with the User Messaging Platform
 
 >
 > Important: You must have a [Funding Choices](https://support.google.com/fundingchoices/answer/9180084) account linked to your AdMob account.
@@ -156,6 +156,9 @@ function loadFormSuccessHandler( event:UserMessagingPlatformEvent ):void
     }
 }
 ```
+
+![](images/ump_consent_form.png)
+
 
 
 You can also use the form to give your user the option to change their consent status. You may wish to do this in a settings screen, and call the `showConsentForm()` to present the form so the user can change their consent as required.

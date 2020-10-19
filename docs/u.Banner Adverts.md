@@ -113,7 +113,7 @@ function errorHandler( event:AdViewEvent ):void
 }
 ```
 
-If an error occurs you can use the `errorCode` on the event to determine what type of error occurred. See the ![](troubleshooting]u.Troubleshooting) guide to determine what happened.
+If an error occurs you can use the `errorCode` on the event to determine what type of error occurred. See the ![](troubleshooting|h.Troubleshooting) guide to determine what happened.
 
 
 

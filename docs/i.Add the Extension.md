@@ -1,5 +1,4 @@
 
-## Add the Extension
 
 First step is always to add the extension to your development environment. 
 To do this use the tutorial located [here](https://airnativeextensions.github.io/tutorials/getting-started).
@@ -104,10 +103,9 @@ The following should be added to your `extensions` node in your application desc
 
 ### Manifest Additions
 
-The Adverts ANE requires a few additions to the manifest to be able to start certain activities. You should add the listing below to your manifest, replacing `APPLICATION_ID` with your AIR application id on Android (eg `air.com.distriqt.test`) Note that it may be prefixed by `air.`.
+The Adverts ANE requires a few additions to the manifest to be able to start certain activities. You should add the listing below to your manifest, replacing `APPLICATION_PACKAGE` with your AIR application package name on Android (eg `air.com.distriqt.test`) Note that it may be prefixed by `air.`.
 
-Make sure you add the  `com.google.android.gms.ads.APPLICATION_ID` `meta-data` tag with a string value of your AdMob app ID into the application node. You can [find your App ID](https://support.google.com/admob/answer/7356431) in the AdMob UI.
-
+Make sure you add the  `com.google.android.gms.ads.APPLICATION_ID` `meta-data` tag with a string value of your AdMob app ID into the application node. You can [find your App ID](https://support.google.com/admob/answer/7356431) in the AdMob UI. i.e. replace `ca-app-pub-AAAAAAAAAAAAAAAA~XXXXXXXXXX` in the additions below.
 
 Also we suggest you enable hardware acceleration so videos are displayed correctly (i.e. the `android:hardwareAccelerated="true"` attribute on your android `application` tag).
 
@@ -141,7 +139,7 @@ Also we suggest you enable hardware acceleration so videos are displayed correct
 
 		<provider
 			android:name="com.google.android.gms.ads.MobileAdsInitProvider"
-			android:authorities="air.com.distriqt.test.debug.mobileadsinitprovider"
+			android:authorities="APPLICATION_PACKAGE.mobileadsinitprovider"
 			android:exported="false"
 			android:initOrder="100" />
 

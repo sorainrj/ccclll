@@ -114,7 +114,7 @@ Once you have called `askForConsent` you will receive one of two events:
 - `ConsentEvent.FORM_ERROR`: Dispatched when there was an error loading or displaying the form
   - `event.error`: Will be a description of the error that occurred.
 
-See [`ConsentEvent`](http://distriqt.github.io/ANE-Adverts/asdocs/com/distriqt/extension/adverts/events/ConsentEvent.html) for more information on the fields.
+See [`ConsentEvent`](https://docs.airnativeextensions.com/asdocs/adverts/com/distriqt/extension/adverts/events/ConsentEvent.html) for more information on the fields.
 
 ```as3
 var options:ConsentOptions = new ConsentOptions( "https://www.your.com/privacyurl" )

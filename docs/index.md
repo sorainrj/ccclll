@@ -43,6 +43,6 @@ As with all our extensions you get access to a year of support and updates as we
 continually improving and updating the extensions for OS updates and feature requests.
 
 This Wiki forms the best source of detailed documentation for the extension along with 
-the [asdocs](https://distriqt.github.io/ANE-Adverts/asdocs). 
+the [asdocs](https://docs.airnativeextensions.com/asdocs/adverts/). 
 
 ![](images/promo.png)
