@@ -31,7 +31,7 @@ continually improving and updating the extensions for OS updates and feature req
 
 ## Documentation
 
-Latest documentation can be found in the [wiki](https://github.com/distriqt/ANE-Adverts/wiki)
+Latest documentation can be found on the [documentation site](https://docs.airnativeextensions.com/docs/adverts/)
 
 More information here: 
 

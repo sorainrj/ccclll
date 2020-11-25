@@ -115,6 +115,7 @@ package com.distriqt.test.adverts
 			
 			addAction( "Check Play Services", _tests.checkPlayServices );
 			addAction( "Setup", _tests.setup );
+			addAction( "Initialise", _tests.initialise );
 			addAction( "Dispose", _tests.destroy );
 			addAction( "Get Advertising Id", _tests.getAdvertisingId );
 			

@@ -17,6 +17,7 @@ package com.distriqt.test.adverts
 	import com.distriqt.extension.adverts.AdSize;
 	import com.distriqt.extension.adverts.AdView;
 	import com.distriqt.extension.adverts.AdViewParams;
+	import com.distriqt.extension.adverts.AdapterStatus;
 	import com.distriqt.extension.adverts.AdvertPlatform;
 	import com.distriqt.extension.adverts.AdvertisingIdInfo;
 	import com.distriqt.extension.adverts.Adverts;
@@ -28,6 +29,7 @@ package com.distriqt.test.adverts
 	import com.distriqt.extension.adverts.consent.DebugGeography;
 	import com.distriqt.extension.adverts.events.AdViewEvent;
 	import com.distriqt.extension.adverts.events.AdvertisingIdEvent;
+	import com.distriqt.extension.adverts.events.AdvertsEvent;
 	import com.distriqt.extension.adverts.events.ConsentEvent;
 	import com.distriqt.extension.adverts.events.InterstitialAdEvent;
 	import com.distriqt.extension.adverts.events.NativeAdEvent;
@@ -39,12 +41,16 @@ package com.distriqt.test.adverts
 	import com.distriqt.extension.adverts.ump.ConsentDebugSettings;
 	import com.distriqt.extension.adverts.ump.ConsentInformation;
 	import com.distriqt.extension.adverts.ump.ConsentRequestParameters;
+	import com.distriqt.extension.adverts.ump.ConsentStatus;
 	import com.distriqt.extension.adverts.ump.events.ConsentInformationEvent;
 	import com.distriqt.extension.adverts.ump.events.UserMessagingPlatformEvent;
+	import com.distriqt.extension.application.Application;
 	import com.distriqt.extension.playservices.base.ConnectionResult;
 	import com.distriqt.extension.playservices.base.GoogleApiAvailability;
+	import com.distriqt.test.adverts.AdvertsTests;
 	
 	import flash.events.ErrorEvent;
+	import flash.events.Event;
 	import flash.utils.setTimeout;
 	
 	import starling.core.Starling;
@@ -76,6 +82,22 @@ package com.distriqt.test.adverts
 		{
 			super();
 			_l = logger;
+			
+			if (Adverts.service.implementation == "Android")
+			{
+				Config.admob_adUnitId_banner = Config.admob_android_adUnitId_banner;
+				Config.admob_adUnitId_interstitial = Config.admob_android_adUnitId_interstitial;
+				Config.admob_adUnitId_rewardedVideoAd = Config.admob_android_adUnitId_rewardedVideo;
+				Config.admob_adUnitId_nativeAd = Config.admob_android_adUnitId_nativeAd;
+			}
+			else
+			{
+				Config.admob_adUnitId_banner = Config.admob_ios_adUnitId_banner;
+				Config.admob_adUnitId_interstitial = Config.admob_ios_adUnitId_interstitial;
+				Config.admob_adUnitId_rewardedVideoAd = Config.admob_ios_adUnitId_rewardedVideo;
+				Config.admob_adUnitId_nativeAd = Config.admob_ios_adUnitId_nativeAd;
+			}
+			
 		}
 		
 		
@@ -111,20 +133,7 @@ package com.distriqt.test.adverts
 					log( "Adverts.isSupported = " + Adverts.isSupported );
 					log( "Adverts.version     = " + Adverts.service.version );
 					
-					if (Adverts.service.implementation == "Android")
-					{
-						Config.admob_adUnitId_banner = Config.admob_android_adUnitId_banner;
-						Config.admob_adUnitId_interstitial = Config.admob_android_adUnitId_interstitial;
-						Config.admob_adUnitId_rewardedVideoAd = Config.admob_android_adUnitId_rewardedVideo;
-						Config.admob_adUnitId_nativeAd = Config.admob_android_adUnitId_nativeAd;
-					}
-					else
-					{
-						Config.admob_adUnitId_banner = Config.admob_ios_adUnitId_banner;
-						Config.admob_adUnitId_interstitial = Config.admob_ios_adUnitId_interstitial;
-						Config.admob_adUnitId_rewardedVideoAd = Config.admob_ios_adUnitId_rewardedVideo;
-						Config.admob_adUnitId_nativeAd = Config.admob_ios_adUnitId_nativeAd;
-					}
+					
 					
 					Adverts.service.addEventListener( ErrorEvent.ERROR, errorHandler );
 					
@@ -135,13 +144,33 @@ package com.distriqt.test.adverts
 					log( "Adverts.platformVersion = " + Adverts.service.platformVersion );
 					
 					
-					// If required, delay this call until after consent has been requested.
-					Adverts.service.initialise();
 				}
 			}
 			catch (e:Error)
 			{
 				log( "ERROR: " + e.message );
+			}
+		}
+		
+		
+		public function initialise():void
+		{
+			log( "initialise" );
+			if (Adverts.isSupported)
+			{
+				Adverts.service.addEventListener( AdvertsEvent.INITIALISED, function( e:AdvertsEvent )
+				{
+					log( "initialised" );
+					Adverts.service.removeEventListener( AdvertsEvent.INITIALISED, arguments.callee );
+
+					for each (var adapterStatus:AdapterStatus in e.adapterStatus)
+					{
+						log( "adapter: " + adapterStatus.name + " : " + adapterStatus.state + " [" + adapterStatus.latency + "] - " + adapterStatus.description );
+					}
+				});
+				
+				// If required, delay this call until after consent has been requested.
+				Adverts.service.initialise();
 			}
 		}
 		
@@ -661,7 +690,6 @@ package com.distriqt.test.adverts
 		
 		
 		
-		
 		//
 		//	USER MESSAGING PLATFORM
 		//
@@ -680,8 +708,6 @@ package com.distriqt.test.adverts
 		}
 		
 		
-		
-		
 		public function ump_updateConsent():void
 		{
 			log( "ump_updateConsent()" );
@@ -691,8 +717,8 @@ package com.distriqt.test.adverts
 						.setTagForUnderAgeOfConsent( false )
 						.setConsentDebugSettings(
 								new ConsentDebugSettings()
-//										.addTestDeviceHashedId( "56A70AEC8354671E4E086619542E5E2F" )
-										.addTestDeviceHashedId( "7E98056F-6BE4-4380-A4A1-C79D1BCD80AC" )
+										.addTestDeviceHashedId( "56A70AEC8354671E4E086619542E5E2F" )
+//										.addTestDeviceHashedId( "7E98056F-6BE4-4380-A4A1-C79D1BCD80AC" )
 										.setDebugGeography( com.distriqt.extension.adverts.ump.DebugGeography.DEBUG_GEOGRAPHY_EEA )
 						)
 				;

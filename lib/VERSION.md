@@ -1,1 +1,1 @@
-| com.distriqt.Adverts | 10.0.024 | 19.4.0 | 7.66.0 |
+| com.distriqt.Adverts | 10.1.036 | 19.4.0 | 7.66.0 |
