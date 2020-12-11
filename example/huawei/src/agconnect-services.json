@@ -1,0 +1,12 @@
+{
+  "client":{
+    "cp_id":"890061000000000160",
+    "product_id":"736430079244465179",
+    "client_id":"367396806650233856",
+    "client_secret":"5335E11B84789F6A6DCFE0E09A298DD980D4BDF894C28A2A8FF736A3F2C947E4",
+    "app_id":"102258475",
+    "package_name":"air.com.distriqt.test",
+    "api_key":"CV7uFKNhWfw+XoT849z+JV/UT8ZlKdJzEYkjTF4UnRwyyVCxrrRaYssrbOrXdOT4272OdlyDxlEguWB/A7l8YwddU7f4"
+  },
+  "configuration_version":"1.0"
+}

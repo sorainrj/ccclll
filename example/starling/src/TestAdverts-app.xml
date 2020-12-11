@@ -62,6 +62,10 @@
                 </dict>
             </array>
 
+
+            <key>UILaunchStoryboardName</key>
+            <string>LaunchScreen</string>
+
         ]]></InfoAdditions>
         <requestedDisplayResolution>high</requestedDisplayResolution>
         <Entitlements>
